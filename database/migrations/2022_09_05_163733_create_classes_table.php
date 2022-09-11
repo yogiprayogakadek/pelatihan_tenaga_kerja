@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 100);
-            $table->string('password', 100);
-            $table->foreignId('role_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->string('image', 100);
+            $table->string('name', 50);
+            $table->text('description');
+            $table->enum('category', ['Bar Class', 'Restaurant Class', 'Housekeeping', 'Kitchen/Culinary']);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('classes');
     }
 };

@@ -36062,3 +36062,11 @@ blockquote {
     text-decoration: none;
     background-color: #10163a
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <link rel="icon"
-        href="{{asset('assets/images/logo.png')}}"
-        type="image/png">
+    <link rel="icon" href="{{asset('assets/images/logo.png')}}" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet"
         href="https://demos.creative-tim.com/impact-design-system-pro/dashboard/assets/vendor/nucleo/css/nucleo.css"
@@ -62,30 +60,68 @@
         </div>
         <div class="container mt--9 pb-5">
             <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-7">
+                <div class="col-lg-8 col-md-8">
                     <div class="card bg-secondary border border-soft mb-0">
                         <div class="card-body px-lg-5 py-lg-5">
-                            <div class="text-center text-gray mb-4"><small><img src="{{asset('assets/images/logo.png')}}" height="70px"></small></div>
+                            <div class="text-center text-gray mb-4"><small><img
+                                        src="{{asset('assets/images/logo.png')}}" height="70px"></small></div>
                             {{--<div class="text-center text-gray mb-4"><small>Login Pengguna Sistem</small></div>--}}
-                            <form role="form" action="{{route('login')}}" method="POST">
+                            <form role="form" action="{{route('registration.store')}}" method="POST" id="formRegister" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group mb-3">
-                                    <div class="input-group input-group-merge input-group-alternative">
-                                        <div class="input-group-prepend"><span class="input-group-text"><i
-                                                    class="ni ni-email-83"></i></span></div><input class="form-control @error('username') is-invalid @enderror"
-                                            placeholder="Username" type="text" name="username" value="{{ old('username') }}">
-                                            @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group mb-2">
+                                            <label for="name">Nama</label>
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="masukkan nama">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="place-of-birth">Tempat Lahir</label>
+                                            <input type="text" class="form-control" name="place_of_birth"
+                                                id="place-of-birth" placeholder="masukkan tempat lahir">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="date-of-birth">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" name="date_of_birth"
+                                                id="date-of-birth" placeholder="masukkan tanggal lahir">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gender">Jenis Kelamin</label>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value="">Pilih jenis kelamin...</option>
+                                                <option value="1">Laki - Laki</option>
+                                                <option value="0">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">No. Telp</label>
+                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="masukkan no. telp">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group input-group-merge input-group-alternative">
-                                        <div class="input-group-prepend"><span class="input-group-text"><i
-                                                    class="ni ni-lock-circle-open"></i></span></div><input
-                                            class="form-control @error('password') is-invalid @enderror" placeholder="Password" type="password" name="password">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="phone">Alamat</label>
+                                            <textarea name="address" id="address" class="form-control" rows="6"></textarea>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="username">Username</label>
+                                            <input type="text" name="username" id="username" class="form-control" placeholder="masukkan username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="masukkan password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image">Foto</label>
+                                            <input type="file" class="form-control" name="image" id="image" placeholder="masukkan image">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="class">Kelas</label>
+                                            <select name="class" id="class" class="form-control">
+                                                @foreach ($class as $key => $value)
+                                                    <option value="{{$key}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="text-center"><button type="submit" class="btn btn-primary my-4">Sign
@@ -95,13 +131,9 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-6"><a href="#" class="text-gray"><small></small></a></div>
-                        <div class="col-6 text-right"><a href="{{route('registration.index')}}" class="text-gray"><small>Buat akun baru</small></a></div>
+                        <div class="col-6 text-right"><a href="{{route('dashboard')}}"
+                                class="text-gray"><small>Sudah ada akun, login.</small></a></div>
                     </div>
-                    {{--<div class="row mt-3">
-                        <div class="col-6"><a href="#" class="text-gray"><small>Forgot password?</small></a></div>
-                        <div class="col-6 text-right"><a href="#" class="text-gray"><small>Create new
-                                    account</small></a></div>
-                    </div>--}}
                 </div>
             </div>
         </div>
@@ -130,7 +162,10 @@
         name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame" id="_hjRemoteVarsFrame"
         src="https://vars.hotjar.com/box-0004cb77850b00d4aa7e1e08ff61e8f0.html"
         style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe>
-        <script>
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\RegistrationRequest', '#formRegister'); !!}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
         $(document).ready(function () {
             @if (session('status') == 'success')
                 toastr.options =
