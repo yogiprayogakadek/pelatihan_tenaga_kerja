@@ -37,6 +37,15 @@
                     <textarea class="form-control description" name="description" id="description" placeholder="masukkan deskripsi">{{$class->description}}</textarea>
                     <div class="invalid-feedback error-description"></div>
                 </div>
+                <div class="form-group">
+                    <label for="assessor">Assessor</label>
+                    <select name="assessor" id="assessor" class="form-control assessor">
+                        @foreach ($assessor as $key => $value)
+                            <option value="{{$key}}" {{$key == $class->assessor_id ? 'selected' : ''}}>{{$value}}</option>
+                        @endforeach
+                    </select>
+                    <div class="invalid-feedback error-assessor"></div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="mc-footer">

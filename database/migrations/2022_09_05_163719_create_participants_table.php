@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->string('name', 100);
             $table->string('place_of_birth', 100);
             $table->date('date_of_birth');

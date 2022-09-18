@@ -72,37 +72,27 @@
                         <tr>
                             @foreach (json_decode($participant->documents, true) as $key => $value)
                             <td>
-                                {!! $value == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'">Unggah</span>' : '<a href="'.asset($value).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'">Ubah</span>' !!}
+                                {!! $value == 'empty' ? '<span class="badge badge-primary pointer">Belum ada data</span>' : '<a href="'.asset($value).'" target="_blank"><span class="badge badge-info">Lihat</span></a> ' !!}
                             </td>
                             @endforeach
-
-                            {{-- <td>
-                                {!! json_decode($participant->documents, true)['cv'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="cv">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['cv']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="cv">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['sertifikat_pengalaman_kerja'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="sertifikat_pengalaman_kerja">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['sertifikat_pengalaman_kerja']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="sertifikat_pengalaman_kerja">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['foto'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="foto">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['foto']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="foto">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['ijazah_sma'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="ijazah_sma">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['ijazah_sma']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="ijazah_sma">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['ijazah_pt'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="ijazah_pt">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['ijazah_pt']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="ijazah_pt">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['kk'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="kk">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['kk']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="kk">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['ktp'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="ktp">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['ktp']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="ktp">Ubah</span>' !!}
-                            </td>
-                            <td>
-                                {!! json_decode($participant->documents, true)['akte_lahir'] == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="akte_lahir">Unggah</span>' : '<a href="'.asset(json_decode($participant->documents, true)['akte_lahir']).'" target="_blank"><span class="badge badge-info">Lihat</span></a> | <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="akte_lahir">Ubah</span>' !!}
-                            </td> --}}
                         </tr>
                     </table>
                 </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status" class="form-control status">
+                        <option value="none">Pilih status...</option>
+                        <option value="1" {{$participant->registration->is_qualified == 1 ? 'selected' : ''}}>Diterima</option>
+                        <option value="0" {{$participant->registration->is_qualified == 0 ? 'selected' : ''}}>Ditolak</option>
+                    </select>
+                    <div class="invalid-feedback error-status"></div>
+                </div>
+                <div class="form-group note-group" {{$participant->registration->is_qualified == 1 ? 'hidden' : ''}}>
+                    <label for="note">Keterangan</label>
+                    <textarea name="note" id="note" class="form-control note" rows="7">{{$participant->registration->is_qualified == 0 ? $participant->registration->note : ''}}</textarea>
+                    <div class="invalid-feedback error-note"></div>
+                </div>
+
                 {{-- <div class="form-group">
                     <label for="current-password">Password Sekarang</label>
                     <input type="password" class="form-control current_password" name="current_password" id="current-password" placeholder="masukkan password sekarang">
@@ -129,7 +119,7 @@
                 <div class="mc-footer">
                     <div class="row">
                         <div class="col-lg-12">
-                            <button type="button" class="btn  btn-primary m-1 btn-update">Simpan</button>
+                            <button type="button" class="btn  btn-primary m-1 btn-update" disabled>Simpan</button>
                             <button type="button" class="btn btn-outline-secondary m-1 btn-data">Batal</button>
                         </div>
                     </div>

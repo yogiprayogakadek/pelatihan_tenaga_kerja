@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('participant_id')->references('id')->on('participants')->onDelete('cascade');
-            $table->foreignId('class_id')->references('id')->on('classes')->onDelete('cascade');
+            // $table->foreignId('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->date('registration_date');
             // $table->enum('position', ['']);
             $table->boolean('is_qualified')->default(false);

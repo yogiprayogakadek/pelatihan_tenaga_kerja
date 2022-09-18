@@ -20,6 +20,9 @@
                     <th>Kategori</th>
                     <th>Nama</th>
                     <th>Deskripsi</th>
+                    <th>Assessor</th>
+                    <th>Peserta</th>
+                    <th>Absensi</th>
                     <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -29,6 +32,13 @@
                         <td>{{$class->category}}</td>
                         <td>{{$class->name}}</td>
                         <td>{{$class->description}}</td>
+                        <td>{{$class->assessor->name}}</td>
+                        <td>
+                            <span class="pointer btn-participant badge badge-primary" data-id="{{$class->id}}">Lihat</span>
+                        </td>
+                        <td>
+                            <span class="pointer btn-attendance badge badge-primary" data-id="{{$class->id}}">Lihat Absensi</span>
+                        </td>
                         <td>
                             <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$class->id}}"></i>
                             <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$class->id}}"></i>

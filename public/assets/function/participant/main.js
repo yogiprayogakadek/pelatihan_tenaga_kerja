@@ -156,4 +156,72 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('body').on('change', '.status', function() {
+        let status = $(this).val();
+        if(status == 0) {
+            $('.note-group').prop('hidden', false)
+            $('.note').removeClass('is-invalid');
+            $('.error-status').html('');
+            $('.btn-update').show()
+            // $('.btn-update').prop('disabled', true)
+            $('body').on('keyup', '.note', function() {
+                var length = $(this).val().length
+                if(length == 0) {
+                    $('.note').addClass('is-invalid');
+                    $('.error-note').html('mohon untuk mengisi note');
+                    $('.btn-update').prop('disabled', true)
+                } else {
+                    $('.note').removeClass('is-invalid');
+                    $('.error-note').html('');
+                    $('.btn-update').prop('disabled', false)
+                }
+            })
+        } else if(status == 1) {
+            $('.btn-update').prop('disabled', false)
+            $('.note-group').prop('hidden', true)
+            $('.note').removeClass('is-invalid');
+            $('.error-status').html('');
+            $('.btn-update').show()
+            $('.note').val('')
+        } else if(status == 'none') {
+            $('.error-status').html('');
+            $('.note-group').prop('hidden', true);
+            $('.btn-update').prop('disabled', true)
+            $('.note').val('')
+        }
+    })
+
+    // on save button
+    $('body').on('click', '.btn-update', function (e) {
+        let form = $('#formEdit')[0]
+        let data = new FormData(form)
+        $.ajax({
+            type: "POST",
+            url: "/participant/update",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function () {
+                $('.btn-update').attr('disable', 'disabled')
+                $('.btn-update').html('<i class="fa fa-spin fa-spinner"></i>')
+            },
+            complete: function () {
+                $('.btn-update').removeAttr('disable')
+                $('.btn-update').html('Simpan')
+            },
+            success: function (response) {
+                Swal.fire(
+                    response.title,
+                    response.message,
+                    response.status
+                );
+                getData();
+            },
+            error: function (error) {
+                // 
+            }
+        });
+    });
 });

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassRequest;
+use App\Models\Assessor;
+use App\Models\Attendance;
+use App\Models\Participant;
 use App\Models\TrainingClass;
 use Illuminate\Http\Request;
 
@@ -16,10 +19,64 @@ class ClassController extends Controller
 
     public function render()
     {
-        $class = TrainingClass::all();
+        if(auth()->user()->role->name == 'Admin') {
+            $class = TrainingClass::all();
+        } else {
+            $class = TrainingClass::where('assessor_id', auth()->user()->assessor->id)->get();
+        }
 
         $view = [
             'data' => view('main.class.render', compact('class'))->render(),
+        ];
+
+        return response()->json($view);
+    }
+
+    public function participant()
+    {
+        $participant = Participant::with(['registration' => function($query) {
+            $query->where('is_qualified', true);
+        }])->get();
+
+        $view = [
+            'data' => view('main.class.assessor.participant', compact('participant'))->render(),
+        ];
+
+        return response()->json($view);
+    }
+
+    public function attendance($class_id)
+    {
+        $participant = Participant::with(['attendance', 'registration' => function($query) {
+            $query->where('is_qualified', true);
+        }])->get();
+
+        $attendance = Attendance::where('class_id', $class_id)->get();
+
+        $view = [
+            'data' => view('main.class.assessor.attendance', compact('participant', 'attendance'))->render(),
+        ];
+
+        return response()->json($view);
+    }
+
+    public function createAttendance($class_id, $meeting_number)
+    {
+        $participant = Participant::whereHas('registration', function($q) {
+            $q->where('is_qualified', true);
+        })->with(['attendance' => function($query) use ($class_id) {
+            $query->where('class_id', $class_id);
+        }])->get();
+
+        $attendance = Attendance::where('class_id', $class_id)->where('meeting_number', $meeting_number)->get();
+
+        $att = array();
+        foreach($attendance as $attendance) {
+            $att[$attendance->participant_id] = $attendance->is_attend;
+        }
+
+        $view = [
+            'data' => view('main.class.assessor.create-attendance', compact('participant', 'att'))->render(),
         ];
 
         return response()->json($view);
@@ -65,9 +122,10 @@ class ClassController extends Controller
     public function edit($id) 
     {
         $class = TrainingClass::find($id);
+        $assessor = Assessor::pluck('name', 'id')->prepend('Pilih assessor', '')->toArray();
         $category = ['Bar Class', 'Restaurant Class', 'Housekeeping', 'Kitchen/Culinary'];
         $view = [
-            'data' => view('main.class.edit', compact('category', 'class'))->render()
+            'data' => view('main.class.edit', compact('category', 'class', 'assessor'))->render()
         ];
 
         return response()->json($view);
@@ -81,6 +139,7 @@ class ClassController extends Controller
                 'name' => $request->name,
                 'category' => $request->category,
                 'description' => $request->description,
+                'assessor_id' => $request->assessor,
             ];
 
             $class->update($data);
@@ -116,6 +175,53 @@ class ClassController extends Controller
                 'status' => 'error',
                 'message' => $e->getMessage(),
                 'title' => 'Gagal'
+            ]);
+        }
+    }
+
+    public function processAttendance(Request $request)
+    {
+        try {
+            // dd($request->all());
+            $data = Attendance::where('meeting_number', $request->meeting_number)->first();
+            // dd($attendance == null ? 'a' : 'b');
+            $participant = explode(',', $request->participant);
+            $attendance = explode(',', $request->attendance);
+            if($data != null) {
+                // Attendance::where('meeting_number', $request->meeting_number)->delete();
+                for($i = 1; $i < count($attendance); $i++) {
+                    Attendance::where('class_id', $request->class_id)
+                                ->where('participant_id', (int)$participant[$i])
+                                ->where('meeting_number', $request->meeting_number)
+                                ->update([
+                                    'class_id' => $request->class_id,
+                                    'participant_id' => (int)$participant[$i],
+                                    'is_attend' => (int)$attendance[$i],
+                                    'meeting_number' => $request->meeting_number,
+                                ]);
+                }
+            } else {
+                for($i = 1; $i < count($attendance); $i++) {
+                    Attendance::create([
+                        'class_id' => $request->class_id,
+                        'participant_id' => (int)$participant[$i],
+                        'is_attend' => (int)$attendance[$i],
+                        'meeting_number' => $request->meeting_number,
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Absensi berhasil disimpan',
+                'title' => 'Berhasil',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                // 'message' => 'Absensi gagal disimpan',
+                'message' => $e->getMessage(),
+                'title' => 'Gagal',
             ]);
         }
     }

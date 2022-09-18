@@ -37,10 +37,14 @@ Route::middleware('auth')->group(function() {
             ->group(function(){
                 Route::get('', 'index')->name('index');
                 Route::get('/render', 'render')->name('render');
+                Route::get('/render/participant', 'participant')->name('participant');
+                Route::get('/render/attendance/{class_id}', 'attendance')->name('attendance');
+                Route::get('/render/create-attendance/{class_id}/{meeting_number}', 'createAttendance')->name('create.attendance');
                 Route::get('/create', 'create')->name('create');
                 Route::get('/edit/{id}', 'edit')->name('edit');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/update', 'update')->name('update');
+                Route::post('/process-attendance', 'processAttendance')->name('process-attendance');
         });
     
         // Announcement Route
@@ -64,7 +68,11 @@ Route::middleware('auth')->group(function() {
                 Route::get('', 'index')->name('index');
                 Route::get('/render', 'render')->name('render');
                 Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/update', 'update')->name('update');
                 Route::post('/upload', 'upload')->name('upload');
+                
+                // document for participant
+                Route::get('/document', 'document')->name('document');
         });
     });
 });

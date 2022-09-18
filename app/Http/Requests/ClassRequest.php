@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class ClassRequest extends FormRequest
 {
@@ -28,6 +29,17 @@ class ClassRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
         ];
+
+        if (!Request::instance()->has('id')) {
+            $rules += [
+                'assessor' => 'nullable',
+            ];
+        } else {
+            $rules += [
+                'assessor' => 'required',
+            ];
+        }
+        
         return $rules;
     }
 
@@ -44,6 +56,7 @@ class ClassRequest extends FormRequest
             'category' => 'Kategori',
             'name' => 'Nama kelas',
             'description' => 'Deskripsi',
+            'assessor' => 'Assessor'
         ];
     }
 }

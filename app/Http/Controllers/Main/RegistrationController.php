@@ -62,6 +62,7 @@ class RegistrationController extends Controller
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'place_of_birth' => $request->place_of_birth,
+                'class_id' => $request->class,
             ];
 
             $documents = [
@@ -81,7 +82,7 @@ class RegistrationController extends Controller
 
             Registration::create([
                 'participant_id' => $participant->id,
-                'class_id' => $request->class,
+                // 'class_id' => $request->class,
                 'registration_date' => date('Y-m-d'),
                 'is_qualified' => false,
                 'note' => null

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 
@@ -76,5 +77,59 @@ class ParticipantController extends Controller
                 'title' => 'Gagal'
             ]);
         }
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            // dd($request->all());
+            $participant = Participant::where('user_id', $request->user_id)->first();
+            // dd($participant->registration);
+            $participant->registration->update([
+                'is_qualified' => $request->status,
+                'note' => $request->note
+            ]);
+
+            if($request->status == 1) {
+                $attendance = Attendance::firstOrNew(
+                    [
+                        'class_id' => $participant->class_id,
+                        'participant_id' => $participant->id,
+                        'meeting_number' => 1,
+                        'is_attend' => false
+                    ],
+                    // [
+                    //     'class_id' => $participant->class_id,
+                    //     'participant_id' => $participant->id,
+                    //     'meeting_number' => 1
+                    // ]
+                );
+                $attendance->save();
+            } else {
+                $attendance = Attendance::where('participant_id', $participant->id)->first();
+                if($attendance !== null) {
+                    $attendance->delete();
+                }
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Data berhasil tersimpan',
+                'title' => 'Berhasil',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'title' => 'Gagal'
+            ]);
+        }
+    }
+
+    public function document() 
+    {
+        $participant = Participant::with('user')->find(auth()->user()->participant->id);
+
+        return view('main.participant.document', compact('participant'));
     }
 }

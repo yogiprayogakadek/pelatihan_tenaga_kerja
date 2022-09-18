@@ -40,11 +40,16 @@ class User extends Authenticatable
 
     public function assessor()
     {
-        return $this->belongsTo(Assessor::class, 'user_id', 'id');
+        return $this->belongsTo(Assessor::class, 'id', 'user_id');
     }
 
     public function participant()
     {
-        return $this->belongsTo(Participant::class, 'user_id', 'id');
+        return $this->belongsTo(Participant::class, 'id', 'user_id');
+    }
+
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
     }
 }

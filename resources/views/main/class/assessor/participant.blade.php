@@ -5,10 +5,16 @@
                 <div class="col-6">
                     Data Peserta
                 </div>
+                <div class="col-6 d-flex align-items-center">
+                    <div class="m-auto"></div>
+                    <button type="button" class="btn btn-outline-primary btn-data">
+                        <i class="nav-icon i-Pen-2 font-weight-bold"></i> Data Kelas
+                    </button>
+                </div>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-striped" id="tableData">
+            <table class="table table-hover table-striped" id="tableParticipant">
                 <thead>
                     <th>No</th>
                     <th>Nama</th>
@@ -17,10 +23,6 @@
                     <th>Jenis Kelamin</th>
                     <th>No. Hp</th>
                     <th>Foto</th>
-                    <th>Dokumen</th>
-                    <th>Status</th>
-                    <th>Keterangan</th>
-                    <th>Aksi</th>
                 </thead>
                 <tbody>
                     @foreach ($participant as $participant)
@@ -32,19 +34,6 @@
                         <td>{{$participant->gender == 1 ? 'Laki - Laki' : 'Perempuan'}}</td>
                         <td>{{$participant->phone}}</td>
                         <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
-                        {{-- <td>{{$participant->documents == null ? 'Belum ada dokumen yang di unggah' : 'Lihat'}}</td> --}}
-                        <td>
-                            @php
-                                $count = array_count_values(json_decode($participant->documents, true))['empty'] ?? 0
-                            @endphp
-                            {{$count == 8 ? 'Belum ada data yang di unggah' : ($count == 0 ? 'Lihat' : 'Dokumen belum lengkap')}}
-                        </td>
-                        <td>{{$participant->registration->is_qualified == 1 ? 'Diterima' : 'Ditolak'}}</td>
-                        <td>{{$participant->registration->note ?? '-'}}</td>
-                        <td>
-                            <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$participant->id}}"></i>
-                            <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$participant->id}}"></i>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -54,7 +43,7 @@
 </div>
 
 <script>
-    $('#tableData').DataTable({
+    $('#tableParticipant').DataTable({
         language: {
             paginate: {
                 previous: "Sebelumnya",

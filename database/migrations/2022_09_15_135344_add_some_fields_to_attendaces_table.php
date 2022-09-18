@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 50);
-            $table->text('description');
-            $table->enum('category', ['Bar Class', 'Restaurant Class', 'Housekeeping', 'Kitchen/Culinary']);
-            $table->timestamps();
+        Schema::table('attendances', function (Blueprint $table) {
+            $table->integer('meeting_number')->after('participant_id');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::table('attendances', function (Blueprint $table) {
+            $table->dropColumn('meeting_number');
+        });
     }
 };
