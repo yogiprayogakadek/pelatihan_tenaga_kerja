@@ -32,7 +32,7 @@
                         <td>{{$class->category}}</td>
                         <td>{{$class->name}}</td>
                         <td>{{$class->description}}</td>
-                        <td>{{$class->assessor->name}}</td>
+                        <td>{{$class->assessor->name ?? '-'}}</td>
                         <td>
                             <span class="pointer btn-participant badge badge-primary" data-id="{{$class->id}}">Lihat</span>
                         </td>

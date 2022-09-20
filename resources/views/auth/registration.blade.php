@@ -36,6 +36,7 @@
     <script>
         <script async="" src="https://script.hotjar.com/modules.311bafb9406f6ba6bebc.js" charset="utf-8">
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body class="bg-white g-sidenav-show g-sidenav-pinned"><noscript><iframe

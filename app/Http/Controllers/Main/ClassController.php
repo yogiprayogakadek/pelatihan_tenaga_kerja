@@ -34,7 +34,9 @@ class ClassController extends Controller
 
     public function participant()
     {
-        $participant = Participant::with(['registration' => function($query) {
+        $participant = Participant::whereHas('payment', function($q) {
+            $q->whereJsonContains('payment_data->transaction_status', 'settlement');
+        })->with(['registration' => function($query) {
             $query->where('is_qualified', true);
         }])->get();
 
@@ -47,7 +49,9 @@ class ClassController extends Controller
 
     public function attendance($class_id)
     {
-        $participant = Participant::with(['attendance', 'registration' => function($query) {
+        $participant = Participant::whereHas('payment', function($q) {
+            $q->whereJsonContains('payment_data->transaction_status', 'settlement');
+        })->with(['attendance', 'registration' => function($query) {
             $query->where('is_qualified', true);
         }])->get();
 
@@ -62,11 +66,16 @@ class ClassController extends Controller
 
     public function createAttendance($class_id, $meeting_number)
     {
-        $participant = Participant::whereHas('registration', function($q) {
-            $q->where('is_qualified', true);
+        $participant = Participant::whereHas('payment', function($q) {
+            $q->whereJsonContains('payment_data->transaction_status', 'settlement');
         })->with(['attendance' => function($query) use ($class_id) {
             $query->where('class_id', $class_id);
         }])->get();
+        // $participant = Participant::whereHas('registration', function($q) {
+        //     $q->where('is_qualified', true);
+        // })->with(['attendance' => function($query) use ($class_id) {
+        //     $query->where('class_id', $class_id);
+        // }])->get();
 
         $attendance = Attendance::where('class_id', $class_id)->where('meeting_number', $meeting_number)->get();
 

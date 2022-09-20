@@ -60,8 +60,8 @@ Route::middleware('auth')->group(function() {
                 Route::post('/update', 'update')->name('update');
             });
             
-            // Participant Route
-            Route::controller(ParticipantController::class)
+        // Participant Route
+        Route::controller(ParticipantController::class)
             ->prefix('participant')
             ->as('participant.')
             ->group(function(){
@@ -73,7 +73,33 @@ Route::middleware('auth')->group(function() {
                 
                 // document for participant
                 Route::get('/document', 'document')->name('document');
-        });
+            });
+
+        // Assessment Route
+        Route::controller(AssessmentController::class)
+            ->prefix('assessment')
+            ->as('assessment.')
+            ->group(function(){
+                Route::get('', 'index')->name('index');
+                Route::get('/render', 'render')->name('render');
+                Route::get('/create', 'create')->name('create');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/store', 'store')->name('store');
+                Route::post('/update', 'update')->name('update');
+            });
+
+        // Payment Route
+        Route::controller(PaymentController::class)
+            ->prefix('payment')
+            ->as('payment.')
+            ->group(function(){
+                Route::get('', 'index')->name('index');
+                Route::get('/render', 'render')->name('render');
+                Route::get('/create', 'create')->name('create');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/store', 'store')->name('store');
+                Route::post('/update', 'update')->name('update');
+            });
     });
 });
 

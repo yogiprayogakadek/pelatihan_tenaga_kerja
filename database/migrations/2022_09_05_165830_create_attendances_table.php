@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->foreignId('participant_id')->references('id')->on('participants')->onDelete('cascade');
-            $table->boolean('is_attend');
+            $table->boolean('is_attend')->nullable();
             $table->timestamps();
         });
     }

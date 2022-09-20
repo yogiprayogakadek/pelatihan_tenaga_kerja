@@ -39,7 +39,7 @@
                             @endphp
                             {{$count == 8 ? 'Belum ada data yang di unggah' : ($count == 0 ? 'Lihat' : 'Dokumen belum lengkap')}}
                         </td>
-                        <td>{{$participant->registration->is_qualified == 1 ? 'Diterima' : 'Ditolak'}}</td>
+                        <td>{{$participant->registration->is_qualified == 1 ? 'Diterima' : ($participant->registration->note == null ? 'Menunggu Validasi' : 'Ditolak')}}</td>
                         <td>{{$participant->registration->note ?? '-'}}</td>
                         <td>
                             <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$participant->id}}"></i>

@@ -26,4 +26,9 @@ class Participant extends Model
     {
         return $this->hasMany(Attendance::class, 'participant_id', 'id');
     }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'id', 'participant_id');
+    }
 }

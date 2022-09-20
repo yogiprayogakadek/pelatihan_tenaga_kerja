@@ -147,9 +147,9 @@ $(document).ready(function () {
                     response.status
                 );
 
-                setTimeout(() => {
-                    location.reload();
-                }, 500)
+                // setTimeout(() => {
+                //     location.reload();
+                // }, 500)
             },
             error: function (error) {
                 // 

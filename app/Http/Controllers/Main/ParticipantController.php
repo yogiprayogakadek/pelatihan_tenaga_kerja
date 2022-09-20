@@ -90,27 +90,22 @@ class ParticipantController extends Controller
                 'note' => $request->note
             ]);
 
-            if($request->status == 1) {
-                $attendance = Attendance::firstOrNew(
-                    [
-                        'class_id' => $participant->class_id,
-                        'participant_id' => $participant->id,
-                        'meeting_number' => 1,
-                        'is_attend' => false
-                    ],
-                    // [
-                    //     'class_id' => $participant->class_id,
-                    //     'participant_id' => $participant->id,
-                    //     'meeting_number' => 1
-                    // ]
-                );
-                $attendance->save();
-            } else {
-                $attendance = Attendance::where('participant_id', $participant->id)->first();
-                if($attendance !== null) {
-                    $attendance->delete();
-                }
-            }
+            // if($request->status == 1) {
+            //     $attendance = Attendance::firstOrNew(
+            //         [
+            //             'class_id' => $participant->class_id,
+            //             'participant_id' => $participant->id,
+            //             'meeting_number' => 1,
+            //             'is_attend' => false
+            //         ],
+            //     );
+            //     $attendance->save();
+            // } else {
+            //     $attendance = Attendance::where('participant_id', $participant->id)->first();
+            //     if($attendance !== null) {
+            //         $attendance->delete();
+            //     }
+            // }
 
             return response()->json([
                 'status' => 'success',
