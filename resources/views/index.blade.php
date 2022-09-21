@@ -6,28 +6,37 @@
 @section('content')
     <div class="row">
         @can('participant')
-        <div class="col-12">
-            <div class="card mb-4">
-                <div class="card-header">
-                    Pesan
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        @if (participant_document() == 8)
-                            Anda belum mengunggah dokumen yang diperlukan, mohon untuk mengunggah dokumen.
-                        @elseif(participant_document() > 0)
-                            Mohon untuk melengkapi dokumen anda terlebih dahulu untuk dapat melanjutkan ke proses selanjutnya.
-                        @else
-                            {!! registration()->is_qualified == 1 ? '<h3><span class="badge bg-success text-white">Anda lolos administrasi, mohon untuk melunasi pembayaran</span></h3>' : (registration()->note == null ? '<h3><span class="badge bg-info text-white">Mohon menunggu validasi dari admin</span></h3>' : '<h3><span class="badge bg-danger text-white">Anda tidak lolos administrasi, '.registration()->note.'</span></h3>') !!}
-                        @endif
-                    </p>
+            @if (auth()->user()->payment != null)
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Pesan
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @if (participant_document() == 8)
+                                Anda belum mengunggah dokumen yang diperlukan, mohon untuk mengunggah dokumen.
+                            @elseif(participant_document() > 0)
+                                Mohon untuk melengkapi dokumen anda terlebih dahulu untuk dapat melanjutkan ke proses selanjutnya.
+                            @else
+                                {{-- @if (registration()->is_qualified == 1)
+                                    <h3><span class="badge bg-success text-white">Anda lolos administrasi, mohon untuk melunasi pembayaran</span></h3>
+                                @elseif (registration()->note == null)
+                                    <h3><span class="badge bg-info text-white">Mohon menunggu validasi dari admin</span></h3>
+                                @else
+                                    <h3><span class="badge bg-danger text-white">Anda tidak lolos administrasi, ' {{registration()->note}}.'</span></h3>
+                                @endif --}}
+                                {!! registration()->is_qualified == 1 ? '<h3><span class="badge bg-success text-white">Anda lolos administrasi, mohon untuk melunasi pembayaran</span></h3>' : (registration()->note == null ? '<h3><span class="badge bg-info text-white">Mohon menunggu validasi dari admin</span></h3>' : '<h3><span class="badge bg-danger text-white">Anda tidak lolos administrasi, '.registration()->note.'</span></h3>') !!}
+                            @endif
+                        </p>
 
-                    @if (registration()->is_qualified == 0 && registration()->note == null && participant_document() > 0)
-                        <a href="{{route('participant.document')}}" class="btn btn-primary btn-rounded">Lengkapi Dokumen</a>
-                    @endif
+                        @if (registration()->is_qualified == 0 && registration()->note == null && participant_document() > 0)
+                            <a href="{{route('participant.document')}}" class="btn btn-primary btn-rounded">Lengkapi Dokumen</a>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
+            @endif
         @endcan
 
         @cannot('participant')

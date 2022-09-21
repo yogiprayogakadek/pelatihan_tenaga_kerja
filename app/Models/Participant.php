@@ -16,6 +16,11 @@ class Participant extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function trainingClass()
+    {
+        return $this->belongsTo(TrainingClass::class, 'class_id', 'id');
+    }
     
     public function registration()
     {

@@ -21,13 +21,25 @@ class ClassController extends Controller
     {
         if(auth()->user()->role->name == 'Admin') {
             $class = TrainingClass::all();
-        } else {
+            $view = [
+                'data' => view('main.class.render', compact('class'))->render(),
+            ];
+        } elseif (auth()->user()->role->name == 'Pengajar') {
             $class = TrainingClass::where('assessor_id', auth()->user()->assessor->id)->get();
-        }
+            $view = [
+                'data' => view('main.class.render', compact('class'))->render(),
+            ];
+        } else {
+            $participant = Participant::whereHas('payment', function($q) {
+                $q->whereJsonContains('payment_data->transaction_status', 'settlement');
+            })->with(['trainingClass' => function($q) {
+                $q->where('id', auth()->user()->participant->class_id);
+            }])->get();
 
-        $view = [
-            'data' => view('main.class.render', compact('class'))->render(),
-        ];
+            $view = [
+                'data' => view('main.class.participant.participant', compact('participant'))->render(),
+            ];
+        }
 
         return response()->json($view);
     }
@@ -89,6 +101,14 @@ class ClassController extends Controller
         ];
 
         return response()->json($view);
+    }
+
+    public function participantAttendance()
+    {
+        $participant = Participant::with(['attendance'])->first();
+        $attendance = Attendance::where('participant_id', auth()->user()->participant->id)->get();
+
+        return view('main.class.participant.attendance', compact('attendance', 'participant'));
     }
 
     public function create()

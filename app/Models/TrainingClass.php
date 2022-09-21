@@ -16,4 +16,9 @@ class TrainingClass extends Model
     {
         return $this->belongsTo(Assessor::class, 'assessor_id', 'id');
     }
+
+    public function participant()
+    {
+        return $this->hasMany(Participant::class, 'class_id', 'id');
+    }
 }

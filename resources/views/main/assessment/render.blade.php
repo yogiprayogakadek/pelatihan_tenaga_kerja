@@ -3,13 +3,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    Data Training Kelas
-                </div>
-                <div class="col-6 d-flex align-items-center">
-                    <div class="m-auto"></div>
-                    <button type="button" class="btn btn-outline-primary btn-add">
-                        <i class="nav-icon i-Pen-2 font-weight-bold"></i> Tambah
-                    </button>
+                    Data Kelas
                 </div>
             </div>
         </div>
@@ -20,12 +14,7 @@
                     <th>Kategori</th>
                     <th>Nama</th>
                     <th>Deskripsi</th>
-                    <th>Assessor</th>
                     <th>Peserta</th>
-                    <th>Absensi</th>
-                    @can('admin')
-                    <th>Aksi</th>
-                    @endcan
                 </thead>
                 <tbody>
                     @foreach ($class as $class)
@@ -34,19 +23,9 @@
                         <td>{{$class->category}}</td>
                         <td>{{$class->name}}</td>
                         <td>{{$class->description}}</td>
-                        <td>{{$class->assessor->name ?? '-'}}</td>
                         <td>
-                            <span class="pointer btn-participant badge badge-primary" data-id="{{$class->id}}">Lihat</span>
+                            <span class="pointer btn-participant badge badge-primary" data-class-id="{{$class->id}}">Lihat</span>
                         </td>
-                        <td>
-                            <span class="pointer btn-attendance badge badge-primary" data-id="{{$class->id}}">Lihat Absensi</span>
-                        </td>
-                        @can('admin')   
-                        <td>
-                            <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$class->id}}"></i>
-                            <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$class->id}}"></i>
-                        </td>
-                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

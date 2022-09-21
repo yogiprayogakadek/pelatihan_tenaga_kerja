@@ -39,7 +39,7 @@
                                 <td>{{$participant->place_of_birth}}, {{$participant->date_of_birth}}</td>
                                 <td>{{$participant->gender == 1 ? 'Laki - Laki' : 'Perempuan'}}</td>
                                 <td>{{$participant->phone}}</td>
-                                <td>{!! $participant->payment == null ? 'Belum melakukan pembayaran | <span class="badge badge-primary pointer btn-payment">Bayar</span>' : (json_decode($participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Pembayaran Berhasil' : '') !!}</td>
+                                <td>{!! $participant->payment == null ? 'Belum melakukan pembayaran | <span class="badge badge-primary pointer btn-payment">Bayar</span>' : (json_decode($participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Pembayaran Berhasil | ' . $participant->payment->payment_date . ' | Rp' . number_format($participant->payment->total,0,'.','.') : '') !!}</td>
                                 {{-- <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
                                 <td>{{$participant->registration->is_qualified == 1 ? 'Diterima' : 'Ditolak'}}</td> --}}
                             </tr>

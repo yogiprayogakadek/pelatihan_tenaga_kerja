@@ -44,7 +44,14 @@ Route::middleware('auth')->group(function() {
                 Route::get('/edit/{id}', 'edit')->name('edit');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/update', 'update')->name('update');
-                Route::post('/process-attendance', 'processAttendance')->name('process-attendance');
+                Route::post('/process-attendance', 'processAttendance')->name('process.attendance');
+                
+                // route for participant
+                Route::get('/participant-attendance', 'participantAttendance')->name('participant.attendance');
+                Route::get('/certificate', function() {
+                    return view('main.certificate.index');
+                });
+                
         });
     
         // Announcement Route
@@ -86,6 +93,8 @@ Route::middleware('auth')->group(function() {
                 Route::get('/edit/{id}', 'edit')->name('edit');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/update', 'update')->name('update');
+
+                Route::get('/render/{class_id}/participant/', 'participant')->name('participant');
             });
 
         // Payment Route
