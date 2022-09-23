@@ -109,6 +109,15 @@ Route::middleware('auth')->group(function() {
                 Route::post('/store', 'store')->name('store');
                 Route::post('/update', 'update')->name('update');
             });
+
+        // Payment Route
+        Route::controller(CertificateController::class)
+            ->prefix('certificate')
+            ->as('certificate.')
+            ->group(function(){
+                Route::get('', 'index')->name('index');
+                Route::get('/download', 'generateCertificate')->name('download');
+            });
     });
 });
 

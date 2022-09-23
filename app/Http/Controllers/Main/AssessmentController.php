@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AssessmentRequest;
 use App\Models\Assessment;
 use App\Models\Participant;
 use App\Models\TrainingClass;
@@ -43,5 +44,40 @@ class AssessmentController extends Controller
         ];
 
         return response()->json($view);
+    }
+
+    public function edit($participant_id)
+    {
+        $assessment = Assessment::where('participant_id', $participant_id)->first();
+
+        return response()->json($assessment);
+    }
+
+    public function store(AssessmentRequest $request)
+    {
+        try {
+            Assessment::updateOrCreate([
+                'participant_id' => $request->participant_id
+            ],
+            [
+                'participant_id' => $request->participant_id,
+                'speaking' => $request->speaking,
+                'writing' => $request->writing,
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Data berhasil tersimpan',
+                'title' => 'Berhasil'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                // 'message' => 'Data gagal tersimpan',
+                'message' => $e->getMessage(),
+                'title' => 'Gagal'
+            ]);
+        }
     }
 }

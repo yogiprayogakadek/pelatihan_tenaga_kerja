@@ -58,13 +58,32 @@ $(document).ready(function () {
 
     $('body').on('click', '.btn-assessment', function() {
         let participant_id = $(this).data('participant-id');
+        var training_class = $(this).data('training-class')
 
         $('#modalAssessment').modal('show');
         $('#modalAssessment input[name=participant_id]').val(participant_id);
+        $('#modalAssessment input[name=training_class]').val(training_class);
+        $('#modalAssessment input[name=speaking]').val('');
+        $('#modalAssessment input[name=writing]').val('');
+    });
+
+    $('body').on('click', '.btn-view-assessment', function() {
+        let participant_id = $(this).data('participant-id');
+        var training_class = $(this).data('training-class')
+
+        $('#modalAssessment').modal('show');
+        $('#modalAssessment input[name=participant_id]').val(participant_id);
+        $('#modalAssessment input[name=training_class_id]').val(training_class);
+
+        $.get("/assessment/edit/"+participant_id, function (data) {
+            $('#modalAssessment input[name=speaking]').val(data.speaking);
+            $('#modalAssessment input[name=writing]').val(data.writing);
+        });
     });
 
     // on save button
     $('body').on('click', '.btn-save', function (e) {
+        let training_class = $('input[name=training_class_id]').val();
         let form = $('#formAssessment')[0]
         let data = new FormData(form)
         $.ajax({
@@ -84,8 +103,10 @@ $(document).ready(function () {
             },
             success: function (response) {
                 $('#formAssessment').trigger('reset')
+                getDataParticipant(training_class)
                 $(".invalid-feedback").html('')
-                // getDataParticipant()
+                $('body').find('.is-invalid').removeClass('is-invalid')
+                $('#modalAssessment').modal('hide');
                 Swal.fire(
                     response.title,
                     response.message,

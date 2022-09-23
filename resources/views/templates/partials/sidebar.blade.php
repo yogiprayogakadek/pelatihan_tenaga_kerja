@@ -79,6 +79,13 @@
                     </a>
                     <div class="triangle"></div>
                 </li>
+                <li class="nav-item {{Request::is('certificate') ? 'active' : '' }}">
+                    <a class="nav-item-hold" href="{{route('certificate.index')}}">
+                        <i class="nav-icon i-Computer-Secure"></i>
+                        <span class="nav-text">Certificate</span>
+                    </a>
+                    <div class="triangle"></div>
+                </li>
             @endcan
         </div>
     </div>

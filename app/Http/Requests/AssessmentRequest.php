@@ -13,7 +13,7 @@ class AssessmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,27 @@ class AssessmentRequest extends FormRequest
      */
     public function rules()
     {
+        $rules = [
+            'speaking' => 'required|numeric',
+            'writing' => 'required|numeric',
+        ];
+
+        return $rules;
+    }
+
+    public function messages()
+    {
         return [
-            //
+            'required' => ':attribute harus diisi',
+            'numeric' => ':attribute hanya mengandung angka'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'speaking' => 'Speaking',
+            'writing' => 'Writing'
         ];
     }
 }

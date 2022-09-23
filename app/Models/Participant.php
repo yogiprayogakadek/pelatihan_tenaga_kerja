@@ -21,6 +21,11 @@ class Participant extends Model
     {
         return $this->belongsTo(TrainingClass::class, 'class_id', 'id');
     }
+
+    public function assessment()
+    {
+        return $this->belongsTo(Assessment::class, 'id', 'participant_id');
+    }
     
     public function registration()
     {

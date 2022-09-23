@@ -36,7 +36,7 @@
                         <td>{{$participant->phone}}</td>
                         <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
                         <td>
-                            <span class="pointer btn-assessment badge badge-primary" data-participant-id="{{$participant->id}}">Nilai</span>
+                            <span class="pointer btn-assessment badge badge-primary {{$participant->assessment != null ? 'btn-view-assessment' : ''}}" data-participant-id="{{$participant->id}}" data-training-class="{{$participant->class_id}}">{{$participant->assessment != null ? 'Lihat' : 'Nilai'}}</span>
                         </td>
                     </tr>
                     @endforeach
@@ -61,13 +61,16 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <input type="hidden" id="participant_id" name="participant_id">
+                        <input type="hidden" id="training_class_id" name="training_class_id">
                         <div class="form-group group-speaking">
                             <label for="speaking">Speaking</label>
                             <input type="text" name="speaking" id="speaking" class="form-control speaking">
+                            <div class="invalid-feedback error-speaking"></div>
                         </div>
                         <div class="form-group group-writing">
                             <label for="writing">Writing</label>
                             <input type="text" name="writing" id="writing" class="form-control writing">
+                            <div class="invalid-feedback error-writing"></div>
                         </div>
                     </div>
                 </div>
