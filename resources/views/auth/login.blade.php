@@ -24,7 +24,7 @@
             opacity: 0 !important
         }
     </style>
-    <title>SPK WP | Login</title> <!-- BOOTSTRAP CSS -->
+    <title>Information System | Login</title> <!-- BOOTSTRAP CSS -->
     <script async="" src="https://s.pinimg.com/ct/lib/main.c99cd143.js"></script>
     <script type="text/javascript" async="" src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
     <script type="text/javascript" async="" src="https://s.pinimg.com/ct/core.js"></script>
@@ -51,7 +51,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-5 col-lg-6 col-md-8 px-5">
                             <h1 class="text-white">Welcome!</h1>
-                            <p class="text-lead text-white">Sistem Informasi</p>
+                            <p class="text-lead text-white">Workforce training information system at the Bali Ocean Star Job Training Institute</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-6"><a href="#" class="text-gray"><small></small></a></div>
-                        <div class="col-6 text-right"><a href="{{route('registration.index')}}" class="text-gray"><small>Buat akun baru</small></a></div>
+                        <div class="col-6 text-right"><a href="{{route('registration.index')}}" class="text-gray"><small>Create account</small></a></div>
                     </div>
                     {{--<div class="row mt-3">
                         <div class="col-6"><a href="#" class="text-gray"><small>Forgot password?</small></a></div>

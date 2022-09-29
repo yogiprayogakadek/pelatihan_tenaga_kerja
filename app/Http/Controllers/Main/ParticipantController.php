@@ -67,14 +67,14 @@ class ParticipantController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil',
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -109,14 +109,14 @@ class ParticipantController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil',
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }

@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('page-title', 'Peserta')
+@section('page-title', 'Participant')
 @section('page-sub-title', 'Data')
 
 @section('content')

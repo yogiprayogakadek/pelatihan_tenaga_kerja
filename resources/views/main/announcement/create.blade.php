@@ -5,7 +5,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        Tambah Pengumuman
+                        Add Announcement
                     </div>
                     <div class="col-6 d-flex align-items-center">
                         <div class="m-auto"></div>
@@ -17,13 +17,13 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="title">Perihal</label>
-                    <input type="text" class="form-control title" name="title" id="title" placeholder="masukkan perihal">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control title" name="title" id="title" placeholder="enter announcement title">
                     <div class="invalid-feedback error-title"></div>
                 </div>
                 <div class="form-group">
-                    <label for="description">Deskripsi</label>
-                    <textarea class="form-control description" name="description" id="description" placeholder="masukkan deskripsi"></textarea>
+                    <label for="description">Description</label>
+                    <textarea class="form-control description" name="description" id="description" placeholder="enter announcement description"></textarea>
                     <div class="invalid-feedback error-description"></div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                 <div class="mc-footer">
                     <div class="row">
                         <div class="col-lg-12">
-                            <button type="button" class="btn  btn-primary m-1 btn-save">Simpan</button>
-                            <button type="button" class="btn btn-outline-secondary m-1 btn-data">Batal</button>
+                            <button type="button" class="btn  btn-primary m-1 btn-save">Save</button>
+                            <button type="button" class="btn btn-outline-secondary m-1 btn-data">Cancel</button>
                         </div>
                     </div>
                 </div>

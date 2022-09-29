@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            Data Pembayaran
+                            Data Payment
                         </div>
                     </div>
                 </div>
@@ -21,13 +21,13 @@
                     <table class="table table-hover table-striped" id="tableData">
                         <thead>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>TTL</th>
-                            <th>Jenis Kelamin</th>
-                            <th>No. Hp</th>
-                            <th>Status Pembayaran</th>
-                            {{-- <th>Foto</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Place, Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Payment Status</th>
+                            {{-- <th>Photo</th>
                             <th>Status</th> --}}
                         </thead>
                         <tbody>
@@ -37,9 +37,9 @@
                                 <td>{{$participant->name}}</td>
                                 <td>{{$participant->address}}</td>
                                 <td>{{$participant->place_of_birth}}, {{$participant->date_of_birth}}</td>
-                                <td>{{$participant->gender == 1 ? 'Laki - Laki' : 'Perempuan'}}</td>
+                                <td>{{$participant->gender == 1 ? 'Male' : 'Female'}}</td>
                                 <td>{{$participant->phone}}</td>
-                                <td>{!! $participant->payment == null ? 'Belum melakukan pembayaran | <span class="badge badge-primary pointer btn-payment">Bayar</span>' : (json_decode($participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Pembayaran Berhasil | ' . $participant->payment->payment_date . ' | Rp' . number_format($participant->payment->total,0,'.','.') : '') !!}</td>
+                                <td>{!! $participant->payment == null ? 'Have not made a payment yet | <span class="badge badge-primary pointer btn-payment">Pay</span>' : (json_decode($participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Payment success | ' . $participant->payment->payment_date . ' | Rp' . number_format($participant->payment->total,0,'.','.') : '') !!}</td>
                                 {{-- <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
                                 <td>{{$participant->registration->is_qualified == 1 ? 'Diterima' : 'Ditolak'}}</td> --}}
                             </tr>
@@ -59,18 +59,18 @@
     $('#tableData').DataTable({
         language: {
             paginate: {
-                previous: "Sebelumnya",
-                next: "Selanjutnya"
+                previous: "Previous",
+                next: "Next"
             },
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-            lengthMenu: "Menampilkan _MENU_ data",
-            search: "Cari:",
-            emptyTable: "Tidak ada data tersedia",
-            zeroRecords: "Tidak ada data yang cocok",
-            loadingRecords: "Memuat data...",
-            processing: "Memproses...",
-            infoFiltered: "(difilter dari _MAX_ total data)"
+            info: "Showing _START_ to _END_ from _TOTAL_ data",
+            infoEmpty: "Showing 0 to 0 from 0 data",
+            lengthMenu: "Showing _MENU_ data",
+            search: "Search:",
+            emptyTable: "Data doesn't exists",
+            zeroRecords: "Data doesn't match",
+            loadingRecords: "Loading..",
+            processing: "Processing...",
+            infoFiltered: "(filtered from _MAX_ total data)"
         },
         lengthMenu: [
             [5, 10, 15, 20, -1],

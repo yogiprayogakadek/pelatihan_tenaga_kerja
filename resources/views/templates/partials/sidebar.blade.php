@@ -58,6 +58,7 @@
                     </a>
                     <div class="triangle"></div>
                 </li>
+                @if (auth()->user()->participant->payment != null)   
                 <li class="nav-item {{Request::is('payment') ? 'active' : '' }}">
                     <a class="nav-item-hold" href="{{route('payment.index')}}">
                         <i class="nav-icon i-Billing"></i>
@@ -86,6 +87,7 @@
                     </a>
                     <div class="triangle"></div>
                 </li>
+                @endif
             @endcan
         </div>
     </div>

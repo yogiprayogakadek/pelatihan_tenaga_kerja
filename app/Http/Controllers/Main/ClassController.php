@@ -134,16 +134,16 @@ class ClassController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -175,16 +175,16 @@ class ClassController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -196,14 +196,14 @@ class ClassController extends Controller
             $class->delete();
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil dihapus',
-                'title' => 'Berhasil'
+                'message' => 'Data deleted successfully',
+                'title' => 'Successfully'
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -213,7 +213,7 @@ class ClassController extends Controller
         try {
             // dd($request->all());
             $data = Attendance::where('meeting_number', $request->meeting_number)->first();
-            // dd($attendance == null ? 'a' : 'b');
+            // dd($attendance == null ? 'Absence' : 'b');
             $participant = explode(',', $request->participant);
             $attendance = explode(',', $request->attendance);
             if($data != null) {
@@ -243,14 +243,14 @@ class ClassController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Absensi berhasil disimpan',
-                'title' => 'Berhasil',
+                'title' => 'Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 // 'message' => 'Absensi gagal disimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal',
+                'message' => 'Something went wrong',
+                'title' => 'Failed',
             ]);
         }
     }

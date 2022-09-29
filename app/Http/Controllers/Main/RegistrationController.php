@@ -95,7 +95,7 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with([
                 'message' => 'Pendaftaran gagal',
-                // 'message' => $e->getMessage(),
+                // 'message' => 'Something went wrong',
                 'status' => 'error',
             ]);
         }

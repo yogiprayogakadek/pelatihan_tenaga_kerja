@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    Data Kelas
+                    Data Class
                 </div>
             </div>
         </div>
@@ -11,10 +11,10 @@
             <table class="table table-hover table-striped" id="tableData">
                 <thead>
                     <th>No</th>
-                    <th>Kategori</th>
-                    <th>Nama</th>
-                    <th>Deskripsi</th>
-                    <th>Peserta</th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Participant</th>
                 </thead>
                 <tbody>
                     @foreach ($class as $class)
@@ -24,7 +24,7 @@
                         <td>{{$class->name}}</td>
                         <td>{{$class->description}}</td>
                         <td>
-                            <span class="pointer btn-participant badge badge-primary" data-class-id="{{$class->id}}">Lihat</span>
+                            <span class="pointer btn-participant badge badge-primary" data-class-id="{{$class->id}}">View</span>
                         </td>
                     </tr>
                     @endforeach
@@ -38,18 +38,18 @@
     $('#tableData').DataTable({
         language: {
             paginate: {
-                previous: "Sebelumnya",
-                next: "Selanjutnya"
+                previous: "Previous",
+                next: "Next"
             },
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-            lengthMenu: "Menampilkan _MENU_ data",
-            search: "Cari:",
-            emptyTable: "Tidak ada data tersedia",
-            zeroRecords: "Tidak ada data yang cocok",
-            loadingRecords: "Memuat data...",
-            processing: "Memproses...",
-            infoFiltered: "(difilter dari _MAX_ total data)"
+            info: "Showing _START_ to _END_ from _TOTAL_ data",
+            infoEmpty: "Showing 0 to 0 from 0 data",
+            lengthMenu: "Showing _MENU_ data",
+            search: "Search:",
+            emptyTable: "Data doesn't exists",
+            zeroRecords: "Data doesn't match",
+            loadingRecords: "Loading..",
+            processing: "Processing...",
+            infoFiltered: "(filtered from _MAX_ total data)"
         },
         lengthMenu: [
             [5, 10, 15, 20, -1],

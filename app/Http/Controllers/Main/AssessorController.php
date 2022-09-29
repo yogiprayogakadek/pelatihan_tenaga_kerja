@@ -87,16 +87,16 @@ class AssessorController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -124,15 +124,15 @@ class AssessorController extends Controller
                 if($request->new_password == '' || $request->confirmation_password == '') {
                     return response()->json([
                         'status' => 'error',
-                        'message' => 'Password harus diisi',
-                        'title' => 'Gagal',
+                        'message' => 'You must enter the password',
+                        'title' => 'Failed',
                     ]);
                 } else {
                     if(!Hash::check($request->current_password, $user->password)) {
                         return response()->json([
                             'status' => 'error',
-                            'message' => 'Password lama tidak sesuai',
-                            'title' => 'Gagal'
+                            'message' => 'Old password doesnt match',
+                            'title' => 'Failed'
                         ]);
                     } else {
                         $userData['password'] = Hash::make($request->new_password);
@@ -175,16 +175,16 @@ class AssessorController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -197,14 +197,14 @@ class AssessorController extends Controller
             User::find($assessor->user_id)->delete();
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil dihapus',
-                'title' => 'Berhasil'
+                'message' => 'Data deleted successfully',
+                'title' => 'Successfully'
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }

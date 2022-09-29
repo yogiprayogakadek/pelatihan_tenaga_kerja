@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6">
-                                Data Peserta
+                                Data Participant
                             </div>
                             {{-- <div class="col-6 d-flex align-items-center">
                                 <div class="m-auto"></div>
@@ -25,46 +25,46 @@
                     <div class="card-body">
                         <div class="form-group">
                             <input type="hidden" name="user_id" id="user_id" value="{{$participant->user->id}}">
-                            <label for="name">Nama</label>
-                            <input type="text" class="form-control name" name="name" id="name" placeholder="masukkan nama" value="{{$participant->name}}" disabled>
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control name" name="name" id="name" placeholder="enter your name" value="{{$participant->name}}" disabled>
                             <div class="invalid-feedback error-name"></div>
                         </div>
                         <div class="form-group">
-                            <label for="place-of-birth">Tempat Lahir</label>
-                            <input type="text" class="form-control place_of_birth" name="place_of_birth" id="place-of-birth" placeholder="masukkan tempat lahir" value="{{$participant->place_of_birth}}" disabled>
+                            <label for="place-of-birth">Place of Birth</label>
+                            <input type="text" class="form-control place_of_birth" name="place_of_birth" id="place-of-birth" placeholder="enter your place of birth" value="{{$participant->place_of_birth}}" disabled>
                             <div class="invalid-feedback error-place_of_birth"></div>
                         </div>
                         <div class="form-group">
-                            <label for="date-of-birth">Tanggal Lahir</label>
-                            <input type="date" class="form-control date_of_birth" name="date_of_birth" id="date-of-birth" placeholder="masukkan tanggal lahir" value="{{$participant->date_of_birth}}" disabled>
+                            <label for="date-of-birth">Date of Birth</label>
+                            <input type="date" class="form-control date_of_birth" name="date_of_birth" id="date-of-birth" placeholder="enter yout date of birth" value="{{$participant->date_of_birth}}" disabled>
                             <div class="invalid-feedback error-date_of_birth"></div>
                         </div>
                         <div class="form-group">
-                            <label for="gender">Jenis Kelamin</label>
+                            <label for="gender">Gender</label>
                             <select name="gender" id="gender" class="form-control gender" disabled>
-                                <option value="">Pilih jenis kelamin...</option>
-                                <option value="1" {{$participant->gender == 1 ? 'selected' : ''}}>Laki - Laki</option>
-                                <option value="0" {{$participant->gender == 0 ? 'selected' : ''}}>Perempuan</option>
+                                <option value="">Choose your gender...</option>
+                                <option value="1" {{$participant->gender == 1 ? 'selected' : ''}}>Male</option>
+                                <option value="0" {{$participant->gender == 0 ? 'selected' : ''}}>Female</option>
                             </select>
                             <div class="invalid-feedback error-gender"></div>
                         </div>
                         <div class="form-group">
-                            <label for="phone">No. Telp</label>
-                            <input type="text" class="form-control phone" name="phone" id="phone" placeholder="masukkan no. telp" value="{{$participant->phone}}" disabled>
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control phone" name="phone" id="phone" placeholder="enter your phone number" value="{{$participant->phone}}" disabled>
                             <div class="invalid-feedback error-phone"></div>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Alamat</label>
+                            <label for="phone">Address</label>
                             <textarea name="address" id="address" class="form-control address" rows="6" disabled>{{$participant->address}}</textarea>
                             <div class="invalid-feedback error-address"></div>
                         </div>
                         <div class="form-group">
                             <label for="user">Username</label>
-                            <input type="text" class="form-control username" name="username" id="username" placeholder="masukkan username" value="{{$participant->user->username}}" disabled>
+                            <input type="text" class="form-control username" name="username" id="username" placeholder="enter your username" value="{{$participant->user->username}}" disabled>
                             <div class="invalid-feedback error-username"></div>
                         </div>
                         <div class="form-group">
-                            <label><h5><strong>Dokumen</strong></h5></label>
+                            <label><h5><strong>Dokuments</strong></h5></label>
                             <table class="table">
                                 <tr>
                                     <th>CV</th>
@@ -79,7 +79,7 @@
                                 <tr>
                                     @foreach (json_decode($participant->documents, true) as $key => $value)
                                     <td>
-                                        {!! $value == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'">Unggah</span>' : '<a href="'.asset($value).'" target="_blank"><span class="badge badge-info">Lihat</span></a>  <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'" '. ($participant->payment != null ? "hidden" : '') .'>Ubah</span>' !!}
+                                        {!! $value == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'">Unggah</span>' : '<a href="'.asset($value).'" target="_blank"><span class="badge badge-info">View</span></a>  <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'" '. ($participant->payment != null ? "hidden" : '') .'>Ubah</span>' !!}
                                     </td>
                                     @endforeach
                                 </tr>
@@ -114,14 +114,14 @@
                             <input type="hidden" name="document" id="document">
                             <input type="hidden" name="participant_id" id="participant-id">
                             <div class="form-group">
-                                <label for="file">File Dokumen</label>
+                                <label for="file">Dokument File</label>
                                 <input type="file" name="file" id="file" class="form-control file">
                                 <div class="invalid-feedback error-file"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-primary process-upload">Unggah</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary process-upload">Upload</button>
                         </div>
                     </form>
                 </div>

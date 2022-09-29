@@ -5,7 +5,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        Tambah Training Kelas
+                        Add Training Class
                     </div>
                     <div class="col-6 d-flex align-items-center">
                         <div class="m-auto"></div>
@@ -17,9 +17,9 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="category">Kategori</label>
+                    <label for="category">Category</label>
                     <select name="category" id="category" class="form-control category">
-                        <option value="">Pilih kategori...</option>
+                        <option value="">Choose Category...</option>
                         @foreach ($category as $category)
                             <option value="{{$category}}">{{$category}}</option>
                         @endforeach
@@ -27,13 +27,13 @@
                     <div class="invalid-feedback error-category"></div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Nama Kelas</label>
-                    <input type="text" class="form-control name" name="name" id="name" placeholder="masukkan nama kelas">
+                    <label for="name">Class name</label>
+                    <input type="text" class="form-control name" name="name" id="name" placeholder="enter class name">
                     <div class="invalid-feedback error-name"></div>
                 </div>
                 <div class="form-group">
-                    <label for="description">Deskripsi</label>
-                    <textarea class="form-control description" name="description" id="description" placeholder="masukkan deskripsi"></textarea>
+                    <label for="description">Description</label>
+                    <textarea class="form-control description" name="description" id="description" placeholder="enter class description"></textarea>
                     <div class="invalid-feedback error-description"></div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                 <div class="mc-footer">
                     <div class="row">
                         <div class="col-lg-12">
-                            <button type="button" class="btn  btn-primary m-1 btn-save">Simpan</button>
-                            <button type="button" class="btn btn-outline-secondary m-1 btn-data">Batal</button>
+                            <button type="button" class="btn  btn-primary m-1 btn-save">Save</button>
+                            <button type="button" class="btn btn-outline-secondary m-1 btn-data">Cancel</button>
                         </div>
                     </div>
                 </div>

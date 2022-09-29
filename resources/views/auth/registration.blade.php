@@ -22,7 +22,7 @@
             opacity: 0 !important
         }
     </style>
-    <title>SPK WP | Login</title> <!-- BOOTSTRAP CSS -->
+    <title>Information System | Login</title> <!-- BOOTSTRAP CSS -->
     <script async="" src="https://s.pinimg.com/ct/lib/main.c99cd143.js"></script>
     <script type="text/javascript" async="" src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
     <script type="text/javascript" async="" src="https://s.pinimg.com/ct/core.js"></script>
@@ -49,7 +49,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-5 col-lg-6 col-md-8 px-5">
                             <h1 class="text-white">Welcome!</h1>
-                            <p class="text-lead text-white">Sistem Informasi</p>
+                            <p class="text-lead text-white">Workforce training information system at the Bali Ocean Star Job Training Institute</p>
                         </div>
                     </div>
                 </div>
@@ -72,51 +72,51 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group mb-2">
-                                            <label for="name">Nama</label>
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="masukkan nama">
+                                            <label for="name">Name</label>
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="enter your name">
                                         </div>
                                         <div class="form-group">
-                                            <label for="place-of-birth">Tempat Lahir</label>
+                                            <label for="place-of-birth">Place of Birth</label>
                                             <input type="text" class="form-control" name="place_of_birth"
-                                                id="place-of-birth" placeholder="masukkan tempat lahir">
+                                                id="place-of-birth" placeholder="enter your place of birth">
                                         </div>
                                         <div class="form-group">
-                                            <label for="date-of-birth">Tanggal Lahir</label>
+                                            <label for="date-of-birth">Date of Birth</label>
                                             <input type="date" class="form-control" name="date_of_birth"
-                                                id="date-of-birth" placeholder="masukkan tanggal lahir">
+                                                id="date-of-birth" placeholder="enter yout date of birth">
                                         </div>
                                         <div class="form-group">
-                                            <label for="gender">Jenis Kelamin</label>
+                                            <label for="gender">Gender</label>
                                             <select name="gender" id="gender" class="form-control">
-                                                <option value="">Pilih jenis kelamin...</option>
-                                                <option value="1">Laki - Laki</option>
-                                                <option value="0">Perempuan</option>
+                                                <option value="">Choose your gender...</option>
+                                                <option value="1">Male</option>
+                                                <option value="0">Female</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="phone">No. Telp</label>
-                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="masukkan no. telp">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="enter your phone number">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="phone">Alamat</label>
+                                            <label for="phone">Address</label>
                                             <textarea name="address" id="address" class="form-control" rows="6"></textarea>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="username">Username</label>
-                                            <input type="text" name="username" id="username" class="form-control" placeholder="masukkan username">
+                                            <input type="text" name="username" id="username" class="form-control" placeholder="enter your username">
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="password" class="form-control" name="password" id="password" placeholder="masukkan password">
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="enter your password">
                                         </div>
                                         <div class="form-group">
-                                            <label for="image">Foto</label>
-                                            <input type="file" class="form-control" name="image" id="image" placeholder="masukkan image">
+                                            <label for="image">Photo</label>
+                                            <input type="file" class="form-control" name="image" id="image" placeholder="enter your photo">
                                         </div>
                                         <div class="form-group">
-                                            <label for="class">Kelas</label>
+                                            <label for="class">Class</label>
                                             <select name="class" id="class" class="form-control">
                                                 @foreach ($class as $key => $value)
                                                     <option value="{{$key}}">{{$value}}</option>
@@ -133,7 +133,7 @@
                     <div class="row mt-3">
                         <div class="col-6"><a href="#" class="text-gray"><small></small></a></div>
                         <div class="col-6 text-right"><a href="{{route('dashboard')}}"
-                                class="text-gray"><small>Sudah ada akun, login.</small></a></div>
+                                class="text-gray"><small>Already have an account?, login.</small></a></div>
                     </div>
                 </div>
             </div>

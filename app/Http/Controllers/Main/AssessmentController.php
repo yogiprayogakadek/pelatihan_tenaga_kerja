@@ -67,16 +67,16 @@ class AssessmentController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }

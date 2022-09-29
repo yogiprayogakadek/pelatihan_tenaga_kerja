@@ -56,7 +56,7 @@ class PaymentController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Pesanan berhasil diproses',
-                'title' => 'Berhasil',
+                'title' => 'Successfully',
                 'payment_id' => $payment->id,
                 'snap_token' => \Midtrans\Snap::getSnapToken($payload)
             ]);
@@ -64,8 +64,8 @@ class PaymentController extends Controller
             return response()->json([
                 'status' => 'error',
                 // 'message' => 'Peminjaman gagal diproses',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -100,13 +100,13 @@ class PaymentController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Pembayaran berhasil',
-                'title' => 'Berhasil',
+                'title' => 'Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Pembayaran gagal',
-                'title' => 'Gagal',
+                'title' => 'Failed',
             ]);
         }
     }

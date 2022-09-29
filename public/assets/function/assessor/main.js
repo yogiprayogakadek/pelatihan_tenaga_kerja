@@ -54,7 +54,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.btn-save').removeAttr('disable')
-                $('.btn-save').html('Simpan')
+                $('.btn-save').html('Save')
             },
             success: function (response) {
                 $('#formAdd').trigger('reset')
@@ -128,7 +128,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.btn-update').removeAttr('disable')
-                $('.btn-update').html('Simpan')
+                $('.btn-update').html('Save')
             },
             success: function (response) {
                 $('#formEdit').trigger('reset')
@@ -168,13 +168,13 @@ $(document).ready(function () {
     $('body').on('click', '.btn-delete', function () {
         let id = $(this).data('id')
         Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Data yang sudah dihapus tidak dapat dikembalikan!",
+            title: 'Are you sure?',
+            text: "Deleted data cannot be recovered!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, hapus!'
+            confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
                 $.ajax({

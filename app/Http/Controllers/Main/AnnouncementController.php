@@ -46,16 +46,16 @@ class AnnouncementController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -84,16 +84,16 @@ class AnnouncementController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil tersimpan',
-                'title' => 'Berhasil'
+                'message' => 'Data saved successfully',
+                'title' => 'Successfully'
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Data gagal tersimpan',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                // 'message' => 'Something went wrong',
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
     }
@@ -105,15 +105,26 @@ class AnnouncementController extends Controller
             $announcement->delete();
             return response()->json([
                 'status' => 'success',
-                'message' => 'Data berhasil dihapus',
-                'title' => 'Berhasil'
+                'message' => 'Data deleted successfully',
+                'title' => 'Successfully'
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'title' => 'Gagal'
+                'message' => 'Something went wrong',
+                'title' => 'Failed'
             ]);
         }
+    }
+
+    public function detail($id) 
+    {
+        $announcement = Announcement::find($id);
+        $data = [
+            'title' => $announcement->title,
+            'more' => $announcement->description,
+            'less' => strlen($announcement->description > 50) ? substr($announcement->description,0,50) . "..." : $announcement->description
+        ];
+        return response()->json($data);
     }
 }

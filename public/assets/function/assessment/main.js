@@ -99,7 +99,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.btn-save').removeAttr('disable')
-                $('.btn-save').html('Simpan')
+                $('.btn-save').html('Save')
             },
             success: function (response) {
                 $('#formAssessment').trigger('reset')
@@ -175,7 +175,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.btn-update').removeAttr('disable')
-                $('.btn-update').html('Simpan')
+                $('.btn-update').html('Save')
             },
             success: function (response) {
                 $('#formEdit').trigger('reset')

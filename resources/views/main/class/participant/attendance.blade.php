@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            Data Absensi
+                            Data Attendance
                         </div>
                     </div>
                 </div>
@@ -18,8 +18,8 @@
                     <table class="table table-bordered">
                         <tr>
                             <th rowspan="2" class="align-middle text-center">No</th>
-                            <th rowspan="2" class="align-middle text-center">Nama</th>
-                            <th class="text-center" colspan="{{count($participant->attendance)}}">Pertemuan</th>
+                            <th rowspan="2" class="align-middle text-center">Name</th>
+                            <th class="text-center" colspan="{{count($participant->attendance)}}">Meeting</th>
                         </tr>
                         <tr>
                             {{-- @foreach ($participant as $key => $data) --}}
@@ -37,7 +37,7 @@
                                     <td>{{$participant->name}}</td>
                                     @foreach ($participant->attendance as $attendance)
                                     <td class="text-center">
-                                        {{$attendance->is_attend == 1 ? 'H' : 'A'}}
+                                        {{$attendance->is_attend == 1 ? 'Present' : 'Absence'}}
                                     </td>
                                     @endforeach
                                 </tr>

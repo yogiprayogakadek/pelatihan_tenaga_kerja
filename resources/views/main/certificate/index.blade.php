@@ -9,14 +9,16 @@
             @if ($assessment > 0)
             <div class="alert alert-primary">
                 <span>
-                    Anda dapat mengunduh sertifikat anda pada link berikut, 
+                    You can download your certificate from following link,
+                    {{-- Anda dapat mengunduh sertifikat anda pada link berikut,  --}}
                     <a href="{{route('certificate.download')}}">download</a>
                 </span>
             </div>
             @else
             <div class="alert alert-info">
                 <span>
-                    Belum ada nilai untuk ujian anda, mohon untuk menghubungi asesor anda.
+                    You haven't complete your exam or your assessor haven't entered your exam value.
+                    {{-- Belum ada nilai untuk ujian anda, mohon untuk menghubungi asesor anda. --}}
                 </span>
             </div>
             @endif

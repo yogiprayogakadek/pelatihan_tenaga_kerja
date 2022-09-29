@@ -3,12 +3,12 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <span class="attendance-title">Data Absensi</span>
+                    <span class="attendance-title">Data Attendance</span>
                 </div>
                 <div class="col-6 d-flex align-items-center">
                     <div class="m-auto"></div>
                     <button type="button" class="btn btn-outline-primary btn-attendance">
-                        <i class="nav-icon i-Pen-2 font-weight-bold"></i> Data Absen
+                        <i class="nav-icon i-Pen-2 font-weight-bold"></i> Data Attendance
                     </button>
                 </div>
             </div>
@@ -20,12 +20,12 @@
                     <thead>
                         <tr>
                             <th rowspan="2" class="align-middle text-center">No</th>
-                            <th rowspan="2" class="align-middle text-center">Nama</th>
-                            <th class="text-center" colspan="2">Keterangan</th>
+                            <th rowspan="2" class="align-middle text-center">Name</th>
+                            <th class="text-center" colspan="2">Description</th>
                         </tr>
                         <tr>
-                            <td class="text-center">Hadir</td>
-                            <td class="text-center">Tidak hadir</td>
+                            <td class="text-center">Present</td>
+                            <td class="text-center">Absence</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                                 </td>
                                 {{-- @foreach ($participant->attendance as $attendance)
                                 <td class="text-center">
-                                    {{$attendance->is_attend == 1 ? 'H' : 'A'}}
+                                    {{$attendance->is_attend == 1 ? 'Present' : 'Absence'}}
                                 </td>
                                 @endforeach --}}
                             </tr>
@@ -53,12 +53,12 @@
                         <tr>
                             <td colspan="3" class="text-center">
                                 <span class="text-muted">
-                                    <i>Pastikan semua data yang dimasukkan sesuai dengan kehadiran anggota</i>
+                                    <i>Makesure all of data have you entered are according to participant attendance</i>
                                 </span>
                             </td>
                             <td class="text-center">
                                 <button class="btn btn-primary btn-process-attendance" type="button">
-                                    <i class="fa fa-save"></i> Simpan
+                                    <i class="fa fa-save"></i> Save
                                 </button>
                             </td>
                         </tr>

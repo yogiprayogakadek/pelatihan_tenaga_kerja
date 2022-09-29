@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Announcement;
 use App\Models\Participant;
 use App\Models\Registration;
 
@@ -41,4 +42,11 @@ use App\Models\Registration;
         }
 
         return $total;
+    }
+
+    function announcement()
+    {
+        $announcement = Announcement::where('is_active', true)->get();
+
+        return $announcement;
     }

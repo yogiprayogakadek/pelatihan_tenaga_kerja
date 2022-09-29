@@ -36070,3 +36070,12 @@ blockquote {
 .capitalize {
     text-transform: capitalize;
 }
+
+.read-more
+{
+    text-decoration: none;
+
+    color: #000000;
+
+    font-weight: bold;
+}

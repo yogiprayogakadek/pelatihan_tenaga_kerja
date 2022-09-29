@@ -54,7 +54,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.btn-save').removeAttr('disable')
-                $('.btn-save').html('Simpan')
+                $('.btn-save').html('Save')
             },
             success: function (response) {
                 $('#formAdd').trigger('reset')
@@ -115,7 +115,7 @@ $(document).ready(function () {
         $('#modalUpload').modal('show');
 
         $('#modalUpload').find('.modal-title').addClass('capitalize')
-        $('#modalUpload').find('.modal-title').html('Unggah Dokumen ' + title);
+        $('#modalUpload').find('.modal-title').html('Upload Document ' + title);
         $('input[name="participant_id"]').val(participantId)
         $('input[name="document"]').val(document)
     });
@@ -137,7 +137,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.process-upload').removeAttr('disable')
-                $('.process-upload').html('Simpan')
+                $('.process-upload').html('Save')
             },
             success: function (response) {
                 $('#modalUpload').modal('hide');
@@ -209,7 +209,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('.btn-update').removeAttr('disable')
-                $('.btn-update').html('Simpan')
+                $('.btn-update').html('Save')
             },
             success: function (response) {
                 Swal.fire(
