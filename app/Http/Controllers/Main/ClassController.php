@@ -19,12 +19,12 @@ class ClassController extends Controller
 
     public function render()
     {
-        if(auth()->user()->role->name == 'Admin') {
+        if(auth()->user()->role == 'Admin') {
             $class = TrainingClass::all();
             $view = [
                 'data' => view('main.class.render', compact('class'))->render(),
             ];
-        } elseif (auth()->user()->role->name == 'Pengajar') {
+        } elseif (auth()->user()->role == 'Assessor') {
             $class = TrainingClass::where('assessor_id', auth()->user()->assessor->id)->get();
             $view = [
                 'data' => view('main.class.render', compact('class'))->render(),
@@ -151,7 +151,8 @@ class ClassController extends Controller
     public function edit($id) 
     {
         $class = TrainingClass::find($id);
-        $assessor = Assessor::pluck('name', 'id')->prepend('Pilih assessor', '')->toArray();
+        $assessor = Assessor::where('is_active', true)->pluck('name', 'id')->prepend('Pilih assessor', '')->toArray();
+        // $assessor = Assessor::pluck('name', 'id')->prepend('Pilih assessor', '')->toArray();
         $category = ['Bar Class', 'Restaurant Class', 'Housekeeping', 'Kitchen/Culinary'];
         $view = [
             'data' => view('main.class.edit', compact('category', 'class', 'assessor'))->render()

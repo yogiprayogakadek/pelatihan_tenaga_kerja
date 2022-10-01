@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id()->startingValue(4025);
+            $table->id()->startingValue(4125);
             // $table->foreignId('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->foreignId('participant_id')->references('id')->on('participants')->onDelete('cascade');
             $table->integer('total');

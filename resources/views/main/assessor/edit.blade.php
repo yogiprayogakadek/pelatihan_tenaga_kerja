@@ -77,6 +77,15 @@
                     <span class="text-muted text-small">*kosongkan jika tidak ingin mengganti foto</span>
                     <div class="invalid-feedback error-image"></div>
                 </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status" class="form-control status">
+                        <option value="">Choose Status</option>
+                        <option value="1" {{$assessor->is_active == 1 ? 'selected' : ''}}>Active</option>
+                        <option value="0" {{$assessor->is_active == 0 ? 'selected' : ''}}>Non-Active</option>
+                    </select>
+                    <div class="invalid-feedback error-status"></div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="mc-footer">

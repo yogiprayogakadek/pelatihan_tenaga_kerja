@@ -18,9 +18,9 @@ class AssessmentController extends Controller
 
     public function render()
     {
-        if(auth()->user()->role->name == 'Admin') {
+        if(auth()->user()->role == 'Admin') {
             $class = TrainingClass::all();
-        } elseif(auth()->user()->role->name == 'Pengajar') {
+        } elseif(auth()->user()->role == 'Assessor') {
             $class = TrainingClass::where('assessor_id', auth()->user()->assessor->id)->get();
         }
 

@@ -20,7 +20,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        if(auth()->user()->role->name == 'Peserta') {
+        if(auth()->user()->role == 'Participant') {
             $participant_id = auth()->user()->participant->id;
             $participant = Participant::whereHas('registration', function($q) {
                 $q->where('is_qualified', true);

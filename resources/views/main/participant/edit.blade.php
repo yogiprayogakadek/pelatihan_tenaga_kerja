@@ -82,7 +82,7 @@
                     <label for="status">Status</label>
                     <select name="status" id="status" class="form-control status">
                         <option value="none">Choose status...</option>
-                        <option value="1" {{$participant->registration->is_qualified == 1 ? 'selected' : ''}}>Acceot</option>
+                        <option value="1" {{$participant->registration->is_qualified == 1 ? 'selected' : ''}}>Accept</option>
                         <option value="0" {{$participant->registration->is_qualified == 0 ? 'selected' : ''}}>Reject</option>
                     </select>
                     <div class="invalid-feedback error-status"></div>

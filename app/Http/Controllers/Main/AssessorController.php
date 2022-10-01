@@ -42,12 +42,13 @@ class AssessorController extends Controller
     public function store(AssessorRequest $request)
     {
         try {
-            $role = Role::where('name', 'Pengajar')->first();
+            // $role = Role::where('name', 'Assessor')->first();
 
             $userData = [
                 'username' => $request->username,
                 'password' => bcrypt($request->password),
-                'role_id' => $role->id
+                // 'role_id' => $role->id
+                'role' => 'Assessor'
             ];
 
             if($request->hasFile('image')) {
@@ -94,7 +95,7 @@ class AssessorController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Something went wrong',
+                // 'message' => $e->getMessage(),
                 'message' => 'Something went wrong',
                 'title' => 'Failed'
             ]);
@@ -169,6 +170,9 @@ class AssessorController extends Controller
                 'gender' => $request->gender,
                 'phone' => $request->phone,
                 'address' => $request->address,
+                'date_of_birth' => $request->date_of_birth,
+                'place_of_birth' => $request->place_of_birth,
+                'is_active' => $request->status
             ];
 
             Assessor::where('user_id', $request->user_id)->update($data);

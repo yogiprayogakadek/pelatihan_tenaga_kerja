@@ -23,12 +23,13 @@ class RegistrationController extends Controller
     public function store(RegistrationRequest $request)
     {
         try {
-            $role = Role::where('name', 'Peserta')->first();
+            // $role = Role::where('name', 'Participant')->first();
 
             $userData = [
                 'username' => $request->username,
                 'password' => bcrypt($request->password),
-                'role_id' => $role->id
+                // 'role_id' => $role->id
+                'role' => 'Participant'
             ];
 
             if($request->hasFile('image')) {

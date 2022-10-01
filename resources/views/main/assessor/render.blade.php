@@ -23,6 +23,7 @@
                     <th>Gender</th>
                     <th>Phone</th>
                     <th>Photo</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -35,9 +36,10 @@
                         <td>{{$assessor->gender == 1 ? 'Male' : 'Female'}}</td>
                         <td>{{$assessor->phone}}</td>
                         <td class="text-center"><img src="{{asset($assessor->user->image)}}" width="80px" class="img-rounded"></td>
+                        <td>{{$assessor->is_active == 1 ? 'Active' : 'Non-Active'}}</td>
                         <td>
                             <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$assessor->id}}"></i>
-                            <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$assessor->id}}"></i>
+                            {{-- <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$assessor->id}}"></i> --}}
                         </td>
                     </tr>
                     @endforeach

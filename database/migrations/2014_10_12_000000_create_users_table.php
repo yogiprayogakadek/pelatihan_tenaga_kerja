@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('username', 100);
             $table->string('password', 100);
-            $table->foreignId('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->enum('role', ['Admin', 'Assessor', 'Participant']);
+            // $table->foreignId('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('image', 100);
             $table->timestamps();
         });

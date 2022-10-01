@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('gender');
             $table->char('phone', 16);
             $table->string('address', 100);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

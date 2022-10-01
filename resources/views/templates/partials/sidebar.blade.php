@@ -58,7 +58,8 @@
                     </a>
                     <div class="triangle"></div>
                 </li>
-                @if (auth()->user()->participant->payment != null)   
+
+                @if (auth()->user()->participant->registration->is_qualified == 1)
                 <li class="nav-item {{Request::is('payment') ? 'active' : '' }}">
                     <a class="nav-item-hold" href="{{route('payment.index')}}">
                         <i class="nav-icon i-Billing"></i>
@@ -66,6 +67,9 @@
                     </a>
                     <div class="triangle"></div>
                 </li>
+                @endif
+
+                @if (auth()->user()->participant->payment != null)   
                 <li class="nav-item {{Request::is('class') ? 'active' : '' }}">
                     <a class="nav-item-hold" href="{{route('class.index')}}">
                         <i class="nav-icon i-Computer-Secure"></i>
