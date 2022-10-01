@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <link rel="icon" href="{{asset('assets/images/logo.png')}}" type="image/png">
+    <link rel="icon" href="{{asset('assets/images/logo-ocean.png')}}" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <link rel="stylesheet"
         href="https://demos.creative-tim.com/impact-design-system-pro/dashboard/assets/vendor/nucleo/css/nucleo.css"
@@ -65,7 +65,7 @@
                     <div class="card bg-secondary border border-soft mb-0">
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-gray mb-4"><small><img
-                                        src="{{asset('assets/images/logo.png')}}" height="70px"></small></div>
+                                        src="{{asset('assets/images/logo-ocean.png')}}" height="70px"></small></div>
                             {{--<div class="text-center text-gray mb-4"><small>Login Pengguna Sistem</small></div>--}}
                             <form role="form" action="{{route('registration.store')}}" method="POST" id="formRegister" enctype="multipart/form-data">
                                 @csrf

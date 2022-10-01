@@ -7,7 +7,7 @@
             target="_blank">Buy Gull HTML</a> --}}
         <span class="flex-grow-1"></span>
         <div class="d-flex align-items-center">
-            {{-- <img class="logo" src="{{asset('assets/images/logo.png')}}" alt="" /> --}}
+            {{-- <img class="logo" src="{{asset('assets/images/logo-ocean.png')}}" alt="" /> --}}
             <div>
                 {{-- <p class="m-0">&copy; 2019 UI-Lib</p> --}}
                 <p class="m-0">All rights reserved</p>

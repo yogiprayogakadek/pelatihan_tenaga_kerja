@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function() {
                 // route for participant
                 Route::get('/participant-attendance', 'participantAttendance')->name('participant.attendance');
                 Route::get('/certificate', function() {
-                    return view('main.certificate.index');
+                    return view('main.certificate.test');
                 });
                 
         });

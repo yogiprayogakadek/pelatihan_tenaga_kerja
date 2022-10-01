@@ -29,8 +29,9 @@ class CertificateController extends Controller
         if($participant->assessment != null) {
             $assessment = ($participant->assessment->speaking + $participant->assessment->writing)/2;
         }
+        $date = convertDate(date('Y-m-d'));
 
-        $pdf = PDF::loadview('main.certificate.download', ['participant' => $participant, 'assessment' => $assessment]);
+        $pdf = PDF::loadview('main.certificate.download', ['participant' => $participant, 'assessment' => $assessment, 'date' => $date]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream('certificate-'.$participant->name.'-'.time().'.pdf');
     }

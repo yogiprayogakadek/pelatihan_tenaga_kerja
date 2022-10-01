@@ -50,3 +50,44 @@ use App\Models\Registration;
 
         return $announcement;
     }
+
+    function convertDate($date, $printDate = false)
+    {
+        //explode / pecah tanggal berdasarkan tanda "-"
+        $exp = explode("-", $date);
+
+        $day = array(
+            1 =>    'Senin',
+            'Selasa',
+            'Rabu',
+            'Kamis',
+            'Jumat',
+            'Sabtu',
+            'Minggu'
+        );
+
+        $month = array(
+            1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        // return $exp[2] . ' ' . $month[(int)$exp[1]] . ' ' . $exp[0];
+
+        $split       = explode('-', $date);
+        $convertDate = $split[2] . ' ' . $month[(int)$split[1]] . ' ' . $split[0];
+
+        if ($printDate) {
+            $num = date('N', strtotime($date));
+            return $day[$num] . ', ' . $convertDate;
+        }
+        return $convertDate;
+    }

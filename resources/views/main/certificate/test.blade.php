@@ -25,22 +25,6 @@
                 /* padding-top: 90px; */
                 position: absolute;
                 left: 80px;
-                top: 50px;
-            }
-
-            .background-logo {
-                position: absolute;
-                top: 130px;
-                left: 300px;
-                /* left: 80px;
-                top: 50px; */
-                height: 250px;
-            }
-
-            .image-grayscale {
-                filter: gray; /* IE6-9 */
-                -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-                filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
             }
 
             .company {
@@ -129,7 +113,6 @@
 
             .person-image {
                 position: absolute;
-                bottom: 65px;
                 left: 0;
                 right: 0;
                 margin: 0 auto;
@@ -148,7 +131,7 @@
             }
 
             .signature-name {
-                margin-top: 55px;
+                margin-top: 70px;
             }
 
             .underline {
@@ -159,7 +142,9 @@
     <body>
         <div class="container">
             <div class="logo">
-                <img src="{{public_path() . '\\'. 'assets/images/logo-ocean.png'}}" height="100px">
+                {{-- <img src="{{asset('assets/images/logo-ocean.png')}}" width="200px"> --}}
+                {{-- An Organization --}}
+                <img src="{{public_path() . '\\'. $participant->user->image}}" height="200px">
             </div>
 
             <div class="company">
@@ -193,19 +178,18 @@
             </div>
 
             <div class="person">
-                {{$participant->name}}
+                Yogi Prayoga
             </div>
 
             <div class="reason">
-                <p>Has Graduated of {{$participant->trainingClass->name}}</p>
-                {{-- <p>Has Graduated Basic Level Program of Bar Departement</p> --}}
+                <p>Has Graduated Basic Level Program of Bar Departement</p>
                 <p class="company-name">at</p>
                 <p class="company-name">Bali Ocean Star Cruise Line Training Center</p>
                 <p class="company-name">Periode 2021 - 2022</p>
             </div>
 
             <div class="signature">
-                <p>Gianyar, {{$date}}</p>
+                <p>Gianyar, 1 Oktober 2022</p>
                 <p class="signature-margin">Director</p>
                 <p class="signature-margin">Yayasan Bali Ocean Star</p>
                 <p class="signature-margin">Cruise Line Training Center</p>
@@ -215,11 +199,7 @@
             </div>
 
             <div class="person-image">
-                <img src="{{public_path() . '\\'. $participant->user->image}}" height="100px">
-            </div>
-
-            <div class="background-logo">
-                <img style="opacity: 0.3" src="{{public_path() . '\\'. 'assets/images/grayscale-logo.png'}}">
+                <img src="{{public_path() . '\\'. $participant->user->image}}" height="200px">
             </div>
         </div>
     </body>
