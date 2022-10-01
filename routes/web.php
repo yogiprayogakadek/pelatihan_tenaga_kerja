@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function() {
             ->group(function(){
                 Route::get('', 'index')->name('index');
                 Route::get('/render', 'render')->name('render');
-                Route::get('/render/participant', 'participant')->name('participant');
+                Route::get('/render/participant/{class_id}', 'participant')->name('participant');
                 Route::get('/render/attendance/{class_id}', 'attendance')->name('attendance');
                 Route::get('/render/create-attendance/{class_id}/{meeting_number}', 'createAttendance')->name('create.attendance');
                 Route::get('/create', 'create')->name('create');

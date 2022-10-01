@@ -44,13 +44,13 @@ class ClassController extends Controller
         return response()->json($view);
     }
 
-    public function participant()
+    public function participant($class_id)
     {
         $participant = Participant::whereHas('payment', function($q) {
             $q->whereJsonContains('payment_data->transaction_status', 'settlement');
         })->with(['registration' => function($query) {
             $query->where('is_qualified', true);
-        }])->get();
+        }])->where('class_id', $class_id)->get();
 
         $view = [
             'data' => view('main.class.assessor.participant', compact('participant'))->render(),

@@ -12,10 +12,10 @@ function getData() {
     });
 }
 
-function getDataParticipant() {
+function getDataParticipant(class_id) {
     $.ajax({
         type: "get",
-        url: "/class/render/participant",
+        url: "/class/render/participant/"+class_id,
         dataType: "json",
         success: function (response) {
             $(".render").html(response.data);
@@ -82,7 +82,8 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '.btn-participant', function () {
-        getDataParticipant();
+        let class_id = $(this).data('id')
+        getDataParticipant(class_id);
     });
 
     $('body').on('click', '.btn-attendance', function () {

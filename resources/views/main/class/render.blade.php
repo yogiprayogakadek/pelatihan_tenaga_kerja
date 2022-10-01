@@ -5,12 +5,14 @@
                 <div class="col-6">
                     Data Training Class
                 </div>
+                @can('admin')
                 <div class="col-6 d-flex align-items-center">
                     <div class="m-auto"></div>
                     <button type="button" class="btn btn-outline-primary btn-add">
                         <i class="nav-icon i-Pen-2 font-weight-bold"></i> Add
                     </button>
                 </div>
+                @endcan
             </div>
         </div>
         <div class="card-body">
