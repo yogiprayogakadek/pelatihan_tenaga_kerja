@@ -26,7 +26,8 @@ class PaymentController extends Controller
                 $q->where('is_qualified', true);
             })->with(['payment' => function ($q) use ($participant_id) {
                 $q->where('participant_id', $participant_id);
-            }])->where('id', $participant_id)->get();
+            }, 'manyClass'])->where('id', $participant_id)->get();
+            // dd($participant);
         } else {
             $participant = Participant::with(['payment', 'registration' => function($q) {
                 $q->where('is_qualified', true);
@@ -42,6 +43,7 @@ class PaymentController extends Controller
         try {
             $payment = Payment::create([
                 'participant_id' => auth()->user()->participant->id,
+                'class_id' => $request->class_id,
                 'total' => 4500000,
                 'payment_date' => date('Y-m-d'),
             ]);
@@ -55,7 +57,7 @@ class PaymentController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Pesanan berhasil diproses',
+                'message' => 'Payment saved!',
                 'title' => 'Successfully',
                 'payment_id' => $payment->id,
                 'snap_token' => \Midtrans\Snap::getSnapToken($payload)
@@ -63,8 +65,8 @@ class PaymentController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Peminjaman gagal diproses',
-                'message' => 'Something went wrong',
+                'message' => $e->getMessage(),
+                // 'message' => 'Something went wrong',
                 'title' => 'Failed'
             ]);
         }
@@ -83,7 +85,7 @@ class PaymentController extends Controller
                 // if(json_decode($payment_data, true)['transaction_status'] == 'settlement') {
                     $attendance = Attendance::firstOrNew(
                         [
-                            'class_id' => $payment->participant->class_id,
+                            'class_id' => $request->class_id,
                             'participant_id' => $payment->participant->id,
                             'meeting_number' => 1,
                             'is_attend' => false
@@ -99,13 +101,13 @@ class PaymentController extends Controller
             }
             return response()->json([
                 'status' => 'success',
-                'message' => 'Pembayaran berhasil',
+                'message' => 'Payment success!',
                 'title' => 'Successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Pembayaran gagal',
+                'message' => $e->getMessage(),
                 'title' => 'Failed',
             ]);
         }

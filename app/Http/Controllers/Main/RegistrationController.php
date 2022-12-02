@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\Participant;
+use App\Models\ParticipantClass;
 use App\Models\Registration;
 use App\Models\Role;
 use App\Models\TrainingClass;
@@ -63,7 +64,7 @@ class RegistrationController extends Controller
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'place_of_birth' => $request->place_of_birth,
-                'class_id' => $request->class,
+                // 'class_id' => $request->class,
             ];
 
             $documents = [
@@ -81,6 +82,12 @@ class RegistrationController extends Controller
 
             $participant = Participant::create($data);
 
+            // save to participant class
+            ParticipantClass::create([
+                'participant_id' => $participant->id,
+                'class_id' => $request->class
+            ]);
+            
             Registration::create([
                 'participant_id' => $participant->id,
                 // 'class_id' => $request->class,
@@ -90,13 +97,13 @@ class RegistrationController extends Controller
             ]);
 
             return redirect()->route('login')->with([
-                'message' => 'Pendaftaran berhasil',
+                'message' => 'Registration successfully!',
                 'status' => 'success',
             ]);
         } catch (\Exception $e) {
             return redirect()->back()->with([
-                'message' => 'Pendaftaran gagal',
-                // 'message' => 'Something went wrong',
+                // 'message' => 'Pendaftaran gagal',
+                'message' => 'Something went wrong',
                 'status' => 'error',
             ]);
         }

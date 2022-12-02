@@ -124,7 +124,19 @@ class ClassController extends Controller
     public function store(ClassRequest $request)
     {
         try {
+            $cat = $request->category;
+            if($cat == "Bar Class") {
+                $code = 'BR-' . date('Y');
+            } else if ($cat == "Restaurant Class") {
+                $code = 'RC-' . date('Y');
+            } else if ($cat == "Housekeeping") {
+                $code = 'HK-' . date('Y');
+            } else if ($cat == "Kitchen/Culinary") {
+                $code = 'KT-' . date('Y');
+            }
+
             $data = [
+                'code' => $code,
                 'name' => $request->name,
                 'category' => $request->category,
                 'description' => $request->description,
@@ -164,12 +176,25 @@ class ClassController extends Controller
     public function update(ClassRequest $request)
     {
         try {
+            $cat = $request->category;
+            if($cat == "Bar Class") {
+                $code = 'BR-' . date('Y');
+            } else if ($cat == "Restaurant Class") {
+                $code = 'RC-' . date('Y');
+            } else if ($cat == "Housekeeping") {
+                $code = 'HK-' . date('Y');
+            } else if ($cat == "Kitchen/Culinary") {
+                $code = 'KT-' . date('Y');
+            }
+
             $class = TrainingClass::find($request->id);
             $data = [
+                'code' => $code,
                 'name' => $request->name,
                 'category' => $request->category,
                 'description' => $request->description,
                 'assessor_id' => $request->assessor,
+                'status' => $request->status,
             ];
 
             $class->update($data);
@@ -243,7 +268,7 @@ class ClassController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Absensi berhasil disimpan',
+                'message' => 'Attendance saved!',
                 'title' => 'Successfully',
             ]);
         } catch (\Exception $e) {

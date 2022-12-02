@@ -30,8 +30,14 @@
                         <td>{{$announcement->description}}</td>
                         <td>{{$announcement->is_active == 1 ? 'Active' : 'Non-Active'}}</td>
                         <td>
-                            <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$announcement->id}}"></i>
-                            <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$announcement->id}}"></i>
+                            <button class="btn btn-edit btn-default" data-id="{{$announcement->id}}">
+                                <i class="fa fa-eye text-success mr-2 pointer" ></i> Edit dan View
+                            </button>
+                            {{-- <button class="btn btn-delete btn-danger" data-id="{{$announcement->id}}">
+                                <i class="fa fa-trash text-success pointer" ></i> Delete
+                            </button> --}}
+                            {{-- <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$announcement->id}}"></i> --}}
+                            {{-- <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$announcement->id}}"></i> --}}
                         </td>
                     </tr>
                     @endforeach

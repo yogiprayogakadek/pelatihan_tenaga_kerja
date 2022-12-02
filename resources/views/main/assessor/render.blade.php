@@ -38,7 +38,9 @@
                         <td class="text-center"><img src="{{asset($assessor->user->image)}}" width="80px" class="img-rounded"></td>
                         <td>{{$assessor->is_active == 1 ? 'Active' : 'Non-Active'}}</td>
                         <td>
-                            <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$assessor->id}}"></i>
+                            <button class="btn btn-edit btn-default" data-id="{{$assessor->id}}">
+                                <i class="fa fa-eye text-success mr-2 pointer" ></i> Edit dan View
+                            </button>
                             {{-- <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$assessor->id}}"></i> --}}
                         </td>
                     </tr>

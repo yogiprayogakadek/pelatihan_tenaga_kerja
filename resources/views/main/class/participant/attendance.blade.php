@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('page-title', 'Absensi')
+@section('page-title', 'Attendance')
 @section('page-sub-title', 'Data')
 
 @section('content')

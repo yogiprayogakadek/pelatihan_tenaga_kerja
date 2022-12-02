@@ -20,11 +20,13 @@
                 <thead>
                     <th>No</th>
                     <th>Category</th>
+                    <th>Code</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Assessor</th>
                     <th>Participant</th>
                     <th>Attendance</th>
+                    <th>Status</th>
                     @can('admin')
                     <th>Action</th>
                     @endcan
@@ -34,6 +36,7 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$class->category}}</td>
+                        <td>{{$class->code}}</td>
                         <td>{{$class->name}}</td>
                         <td>{{$class->description}}</td>
                         <td>{{$class->assessor->name ?? '-'}}</td>
@@ -43,10 +46,18 @@
                         <td>
                             <span class="pointer btn-attendance badge badge-primary" data-id="{{$class->id}}">View Attendance</span>
                         </td>
+                        <td>{{$class->status == true ? 'Active' : 'Deactive'}}</td>
                         @can('admin')   
                         <td>
-                            <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$class->id}}"></i>
-                            <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$class->id}}"></i>
+                            <button class="btn btn-edit btn-default" data-id="{{$class->id}}">
+                                <i class="fa fa-eye text-success mr-2 pointer" ></i> Edit dan View
+                            </button>
+                            <button class="btn btn-delete btn-danger" data-id="{{$class->id}}">
+                                <i class="fa fa-trash text-success pointer" ></i> Delete
+                            </button>
+
+                            {{-- <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$class->id}}"></i>
+                            <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$class->id}}"></i> --}}
                         </td>
                         @endcan
                     </tr>

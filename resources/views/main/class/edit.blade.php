@@ -46,6 +46,14 @@
                     </select>
                     <div class="invalid-feedback error-assessor"></div>
                 </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status" class="form-control status">
+                        <option value="1" {{$class->status == 1 ? 'selected' : ''}}>Active</option>
+                        <option value="0" {{$class->status == 0 ? 'selected' : ''}}>Deactive</option>
+                    </select>
+                    <div class="invalid-feedback error-status"></div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="mc-footer">

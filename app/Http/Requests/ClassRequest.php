@@ -33,10 +33,12 @@ class ClassRequest extends FormRequest
         if (!Request::instance()->has('id')) {
             $rules += [
                 'assessor' => 'nullable',
+                'status' => 'nullable',
             ];
         } else {
             $rules += [
                 'assessor' => 'required',
+                'status' => 'required',
             ];
         }
         

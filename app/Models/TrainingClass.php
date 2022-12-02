@@ -21,4 +21,9 @@ class TrainingClass extends Model
     {
         return $this->hasMany(Participant::class, 'class_id', 'id');
     }
+
+    public function participantClass()
+    {
+        return $this->hasOne(ParticipantClass::class, 'id', 'class_id');
+    }
 }

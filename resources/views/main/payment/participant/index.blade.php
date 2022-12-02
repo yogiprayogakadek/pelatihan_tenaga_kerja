@@ -23,26 +23,28 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Address</th>
-                            <th>Place, Date of Birth</th>
-                            <th>Gender</th>
+                            {{-- <th>Place, Date of Birth</th> --}}
+                            {{-- <th>Gender</th> --}}
                             <th>Phone</th>
+                            <th>Class Code</th>
                             <th>Payment Status</th>
                             {{-- <th>Photo</th>
                             <th>Status</th> --}}
                         </thead>
                         <tbody>
                             @foreach ($participant as $participant)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$participant->name}}</td>
-                                <td>{{$participant->address}}</td>
-                                <td>{{$participant->place_of_birth}}, {{$participant->date_of_birth}}</td>
-                                <td>{{$participant->gender == 1 ? 'Male' : 'Female'}}</td>
-                                <td>{{$participant->phone}}</td>
-                                <td>{!! $participant->payment == null ? 'Have not made a payment yet | <span class="badge badge-primary pointer btn-payment">Pay</span>' : (json_decode($participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Payment success | ' . $participant->payment->payment_date . ' | Rp' . number_format($participant->payment->total,0,'.','.') : '') !!}</td>
-                                {{-- <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
-                                <td>{{$participant->registration->is_qualified == 1 ? 'Diterima' : 'Ditolak'}}</td> --}}
-                            </tr>
+                                @foreach ($participant->manyClass as $class)    
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$class->participant->name}}</td>
+                                    <td>{{$class->participant->address}}</td>
+                                    {{-- <td>{{$participant->place_of_birth}}, {{$participant->date_of_birth}}</td> --}}
+                                    {{-- <td>{{$participant->gender == 1 ? 'Male' : 'Female'}}</td> --}}
+                                    <td>{{$class->participant->phone}}</td>
+                                    <td>{{$class->trainingClass->code}}</td>
+                                    <td>{!! $class->participant->payment == null ? 'Have not made a payment yet | <span class="badge badge-primary pointer btn-payment" data-class="'.$class->class_id.'">Pay</span>' : (json_decode($class->participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Payment success | ' . $class->participant->payment->payment_date . ' | Rp' . number_format($class->participant->payment->total,0,'.','.') : '') !!}</td>
+                                </tr>
+                                @endforeach
                             @endforeach
                         </tbody>
                     </table>

@@ -16,6 +16,7 @@ class ClassSeeder extends Seeder
     public function run()
     {
         TrainingClass::create([
+            'code' => 'BR-2022',
             'name' => 'Bartender',
             'Description' => 'Bartender',
             'Category' => 'Bar Class'
