@@ -61,7 +61,7 @@
 
         @cannot('participant')
             @foreach (menu() as $key => $item)                
-                <div class="col-lg-4 col-md-6 col-sm-6 pointer">
+                <div class="col-4 pointer">
                     <a href="{{route(strtolower($item[0]) == 'trainingclass' ? 'class.index' : strtolower($item[0]).'.index')}}">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center">
@@ -76,7 +76,24 @@
                 </div>
             @endforeach
         @endcannot
-
+        @can('admin')
+        <div class="col-4 pointer">
+            <a href="{{route('participant.index')}}">
+                <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Administrator"></i>
+                        <div class="content">
+                            {{-- <p class="text-muted mt-2 mb-0">Participant Need Validate</p> --}}
+                            <p class="text-primary text-24 line-height-1 mt-2">{{needValidate()}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="text-muted mt-2 mb-0">Participant Need Validate</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        @endcan
     </div>
 @endsection
 

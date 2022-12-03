@@ -30,6 +30,11 @@ use App\Models\Registration;
         return $menu;
     }
 
+    function needValidate()
+    {
+        return Registration::where('is_qualified', false)->count();
+    }
+
     function total_data($model)
     {
         $a = 'App\Models\\' . $model;

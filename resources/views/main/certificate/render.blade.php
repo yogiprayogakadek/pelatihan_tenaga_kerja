@@ -25,7 +25,7 @@
                         <td>{{$class->trainingClass->code}}</td>
                         <td>{{$class->trainingClass->name}}</td>
                         <td>
-                            @if ($$aassessment->speaking!=  0)
+                            @if ($class->participant->assessment !=  null)
                             <span>
                                 You can download your certificate from following link,
                                 {{-- <a href="{{route('certificate.download')}}">download</a> --}}
@@ -37,7 +37,7 @@
                             @endif
                         </td>
                         <td>
-                            @if ($assessment->speaking != 0)
+                            @if ($class->participant->assessment !=  null)
                             <span>
                                 <a href="{{route('certificate.download', $class->id)}}">download</a>
                             </span>

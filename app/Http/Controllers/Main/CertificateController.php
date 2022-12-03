@@ -31,7 +31,7 @@ class CertificateController extends Controller
         // ]);
 
         $class_id = Payment::where('participant_id', auth()->user()->participant->id)->pluck('class_id')->toArray();
-        $participantClass = ParticipantClass::with('trainingClass')->whereIn('class_id', $class_id)->get();
+        $participantClass = ParticipantClass::with('trainingClass')->where('participant_id', auth()->user()->participant->id)->whereIn('class_id', $class_id)->get();
 
         $view = [
             'data' => view('main.certificate.render', compact('participantClass'))->render(),
