@@ -42,7 +42,20 @@
                                     {{-- <td>{{$participant->gender == 1 ? 'Male' : 'Female'}}</td> --}}
                                     <td>{{$class->participant->phone}}</td>
                                     <td>{{$class->trainingClass->code}}</td>
-                                    <td>{!! $class->participant->payment == null ? 'Have not made a payment yet | <span class="badge badge-primary pointer btn-payment" data-class="'.$class->class_id.'">Pay</span>' : (json_decode($class->participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Payment success | ' . $class->participant->payment->payment_date . ' | Rp' . number_format($class->participant->payment->total,0,'.','.') : '') !!}</td>
+
+                                    <td>
+                                        @if ($class->participant->payment == null)
+                                        Have not made a payment yet | <span class="badge badge-primary pointer btn-payment" data-class="{{$class->class_id}}">Pay</span>
+                                        @else
+                                            @if (!in_array($class->class_id, $class_id))
+                                                Have not made a payment yet | <span class="badge badge-primary pointer btn-payment" data-class="{{$class->class_id}}">Pay</span>
+                                            @else
+                                                {!! (json_decode($class->participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Payment success | ' . $class->participant->payment->payment_date . ' | Rp' . number_format($class->participant->payment->total,0,'.','.') : '') !!}
+                                            @endif
+                                        @endif
+                                    </td>
+
+                                    {{-- <td>{!! $class->participant->payment == null ? 'Have not made a payment yet | <span class="badge badge-primary pointer btn-payment" data-class="'.$class->class_id.'">Pay</span>' : (json_decode($class->participant->payment->payment_data, true)['transaction_status'] == 'settlement' ? 'Payment success | ' . $class->participant->payment->payment_date . ' | Rp' . number_format($class->participant->payment->total,0,'.','.') : '') !!}</td> --}}
                                 </tr>
                                 @endforeach
                             @endforeach

@@ -19,6 +19,9 @@ function getDataParticipant(class_id) {
         dataType: "json",
         success: function (response) {
             $(".render").html(response.data);
+            setTimeout(() => {
+                $('.btn-assessment').attr('data-training-class', class_id);
+            }, 1000)
         },
         error: function (error) {
             console.log("Error", error);

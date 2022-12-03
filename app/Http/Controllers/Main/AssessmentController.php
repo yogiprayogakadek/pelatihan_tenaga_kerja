@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AssessmentRequest;
 use App\Models\Assessment;
 use App\Models\Participant;
+use App\Models\ParticipantClass;
 use App\Models\TrainingClass;
 use Illuminate\Http\Request;
 
@@ -33,11 +34,12 @@ class AssessmentController extends Controller
 
     public function participant($class_id)
     {
+        $participantClass = ParticipantClass::where('class_id', $class_id)->pluck('participant_id')->toArray();
         $participant = Participant::whereHas('payment', function($q) {
             $q->whereJsonContains('payment_data->transaction_status', 'settlement');
         })->with(['registration' => function($query) {
             $query->where('is_qualified', true);
-        }])->where('class_id', $class_id)->get();
+        }])->whereIn('id', $participantClass)->get();
 
         $view = [
             'data' => view('main.assessment.participant', compact('participant'))->render(),

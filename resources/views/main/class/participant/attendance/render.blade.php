@@ -3,39 +3,39 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    Data Participant
+                    Data Training Class
                 </div>
-                @cannot('participant')
+                {{-- @can('admin') --}}
                 <div class="col-6 d-flex align-items-center">
                     <div class="m-auto"></div>
-                    <button type="button" class="btn btn-outline-primary btn-data">
-                        <i class="nav-icon i-Pen-2 font-weight-bold"></i> Data
+                    <button type="button" class="btn btn-outline-primary btn-add-class">
+                        <i class="nav-icon i-Pen-2 font-weight-bold"></i> Add Training Class
                     </button>
                 </div>
-                @endcannot
+                {{-- @endcan --}}
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-striped" id="tableParticipant">
+            <table class="table table-hover table-striped" id="tableData">
                 <thead>
                     <th>No</th>
+                    <th>Category</th>
+                    <th>Code</th>
                     <th>Name</th>
-                    <th>Address</th>
-                    <th>Place, Date of Birth</th>
-                    <th>Gender</th>
-                    <th>Phone</th>
-                    <th>Photo</th>
+                    <th>Assessor</th>
+                    <th>Action</th>
                 </thead>
                 <tbody>
-                    @foreach ($participant as $participant)
+                    @foreach ($participantClass as $class)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$participant->name}}</td>
-                        <td>{{$participant->address}}</td>
-                        <td>{{$participant->place_of_birth}}, {{$participant->date_of_birth}}</td>
-                        <td>{{$participant->gender == 1 ? 'Male' : 'Female'}}</td>
-                        <td>{{$participant->phone}}</td>
-                        <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
+                        <td>{{$class->trainingClass->category}}</td>
+                        <td>{{$class->trainingClass->code}}</td>
+                        <td>{{$class->trainingClass->name}}</td>
+                        <td>{{$class->trainingClass->assessor->name ?? '-'}}</td>
+                        <td>
+                            <span class="pointer btn-view-attendance badge badge-primary" data-id="{{$class->trainingClass->id}}">View</span>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -45,7 +45,7 @@
 </div>
 
 <script>
-    $('#tableParticipant').DataTable({
+    $('#tableData').DataTable({
         language: {
             paginate: {
                 previous: "Previous",

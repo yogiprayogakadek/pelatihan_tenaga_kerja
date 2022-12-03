@@ -36,7 +36,8 @@
                         <td>{{$participant->phone}}</td>
                         <td class="text-center"><img src="{{asset($participant->user->image)}}" width="80px" class="img-rounded"></td>
                         <td>
-                            <span class="pointer btn-assessment badge badge-primary {{$participant->assessment != null ? 'btn-view-assessment' : ''}}" data-participant-id="{{$participant->id}}" data-training-class="{{$participant->class_id}}">{{$participant->assessment != null ? 'View' : 'Value'}}</span>
+                            <span class="pointer btn-assessment badge badge-primary {{$participant->assessment != null ? 'btn-view-assessment' : ''}}" data-participant-id="{{$participant->id}}">{{$participant->assessment != null ? 'View' : 'Value'}}</span>
+                            {{-- <span class="pointer btn-assessment badge badge-primary {{$participant->assessment != null ? 'btn-view-assessment' : ''}}" data-participant-id="{{$participant->id}}" data-training-class="{{$participant->class_id}}">{{$participant->assessment != null ? 'View' : 'Value'}}</span> --}}
                         </td>
                     </tr>
                     @endforeach

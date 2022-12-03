@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Participant;
+use App\Models\ParticipantClass;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -22,12 +23,15 @@ class PaymentController extends Controller
     {
         if(auth()->user()->role == 'Participant') {
             $participant_id = auth()->user()->participant->id;
+            $class_id = Payment::where('participant_id', $participant_id)->pluck('class_id')->toArray();
+
             $participant = Participant::whereHas('registration', function($q) {
                 $q->where('is_qualified', true);
             })->with(['payment' => function ($q) use ($participant_id) {
                 $q->where('participant_id', $participant_id);
             }, 'manyClass'])->where('id', $participant_id)->get();
-            // dd($participant);
+
+
         } else {
             $participant = Participant::with(['payment', 'registration' => function($q) {
                 $q->where('is_qualified', true);
@@ -35,7 +39,7 @@ class PaymentController extends Controller
         }
 
         // dd($participant);
-        return view('main.payment.participant.index', compact('participant'));
+        return view('main.payment.participant.index', compact('participant', 'class_id'));
     }
 
     public function store(Request $request) 
@@ -74,7 +78,7 @@ class PaymentController extends Controller
 
     public function update(Request $request) {
         try {
-            $payment = Payment::with('participant')->where('participant_id', auth()->user()->participant->id)->first();
+            $payment = Payment::with('participant')->where('participant_id', auth()->user()->participant->id)->where('class_id', $request->class_id)->first();
     
             if($payment !== null) {
                 $payment_data = json_decode($request->json_callback);

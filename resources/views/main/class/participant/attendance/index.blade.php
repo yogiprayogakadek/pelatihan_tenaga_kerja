@@ -10,6 +10,5 @@
 @endsection
 
 @push('script')
-    <script src="{{asset('assets/function/class/main.js')}}"></script>
-    <script src="{{asset('assets/function/class/participant/main.js')}}"></script>
+    <script src="{{asset('assets/function/class/participant/attendance/main.js')}}"></script>
 @endpush

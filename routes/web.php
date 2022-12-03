@@ -47,10 +47,15 @@ Route::middleware('auth')->group(function() {
                 Route::post('/process-attendance', 'processAttendance')->name('process.attendance');
                 
                 // route for participant
-                Route::get('/participant-attendance', 'participantAttendance')->name('participant.attendance');
+                Route::get('/participant-attendance', 'participantIndexAttendance')->name('participant.attendance');
+                Route::get('/participant-attendance/render', 'participantRenderAttendance')->name('participant.render.attendance');
+                Route::get('/participant/attendance/{class_id}', 'participantAttendance')->name('participant.data.attendance');
                 Route::get('/certificate', function() {
                     return view('main.certificate.test');
                 });
+
+                Route::get('/participant/add', 'add')->name('add');
+                Route::get('/participant/join-class/{class_id}', 'join')->name('join');
                 
         });
     

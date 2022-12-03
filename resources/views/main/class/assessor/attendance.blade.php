@@ -10,13 +10,16 @@
                     <button type="button" class="btn btn-outline-primary btn-data">
                         <i class="nav-icon i-Pen-2 font-weight-bold"></i> Data Class
                     </button>
+                    @if (count($participant) > 0)
                     <button type="button" class="btn btn-outline-success ml-3 btn-create-attendance" data-meeting-number="{{count(collect($attendance)->unique('meeting_number'))+1}}">
                         <i class="nav-icon i-Pen-2 font-weight-bold"></i> Create Attendance to-{{count(collect($attendance)->unique('meeting_number'))+1}}
                     </button>
+                    @endif
                 </div>
             </div>
         </div>
         <div class="card-body">
+            @if (count($participant) > 0)
             <table class="table table-bordered">
                 <tr>
                     <th rowspan="2" class="align-middle text-center">No</th>
@@ -46,6 +49,11 @@
                     @endforeach
                 </tbody>
             </table>
+            @else
+            <h3 class="text-center">
+                Participants for this training class are empty
+            </h3>
+            @endif
         </div>
     </div>
 </div>
