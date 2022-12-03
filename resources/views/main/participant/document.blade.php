@@ -64,7 +64,7 @@
                             <div class="invalid-feedback error-username"></div>
                         </div>
                         <div class="form-group">
-                            <label><h5><strong>Dokuments</strong></h5></label>
+                            <label><h5><strong>Documents</strong></h5></label>
                             <table class="table">
                                 <tr>
                                     <th>CV</th>
@@ -79,7 +79,7 @@
                                 <tr>
                                     @foreach (json_decode($participant->documents, true) as $key => $value)
                                     <td>
-                                        {!! $value == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'">Unggah</span>' : '<a href="'.asset($value).'" target="_blank"><span class="badge badge-info">View</span></a>  <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'" '. ($participant->payment != null ? "hidden" : '') .'>Ubah</span>' !!}
+                                        {!! $value == 'empty' ? '<span class="badge badge-primary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'">Upload</span>' : '<a href="'.asset($value).'" target="_blank"><span class="badge badge-info">View</span></a>  <span class="badge badge-secondary pointer btn-upload" data-id="'.$participant->id.'" data-document="'.$key.'" '. ($participant->payment != null ? "hidden" : '') .'>Ubah</span>' !!}
                                     </td>
                                     @endforeach
                                 </tr>

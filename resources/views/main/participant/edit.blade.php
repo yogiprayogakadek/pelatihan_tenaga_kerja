@@ -57,7 +57,7 @@
                     <div class="invalid-feedback error-username"></div>
                 </div>
                 <div class="form-group">
-                    <label><h5><strong>Dokuments</strong></h5></label>
+                    <label><h5><strong>Documents</strong></h5></label>
                     <table class="table">
                         <tr>
                             <th>CV</th>

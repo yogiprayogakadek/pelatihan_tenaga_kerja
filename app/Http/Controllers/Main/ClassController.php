@@ -43,7 +43,7 @@ class ClassController extends Controller
             // ];
 
             $class_id = Payment::where('participant_id', auth()->user()->participant->id)->pluck('class_id')->toArray();
-            $participantClass = ParticipantClass::with('trainingClass')->whereIn('class_id', $class_id)->get();
+            $participantClass = ParticipantClass::with('trainingClass')->whereIn('class_id', $class_id)->where('participant_id', auth()->user()->participant->id)->get();
 
             $view = [
                 'data' => view('main.class.participant.render', compact('participantClass'))->render(),
