@@ -197,7 +197,8 @@
             </div>
 
             <div class="reason">
-                <p>Has Graduated of {{$participant->trainingClass->name}}</p>
+                <p>Has Graduated of {{$participant->class_name}}</p>
+                {{-- <p>Has Graduated of {{$participant->trainingClass->name}}</p> --}}
                 {{-- <p>Has Graduated Basic Level Program of Bar Departement</p> --}}
                 <p class="company-name">at</p>
                 <p class="company-name">Bali Ocean Star Cruise Line Training Center</p>
@@ -215,7 +216,7 @@
             </div>
 
             <div class="person-image">
-                <img src="{{public_path() . '\\'. $participant->user->image}}" height="100px">
+                <img src="{{public_path() . '\\'. $participant_image}}" height="100px">
             </div>
 
             <div class="background-logo">

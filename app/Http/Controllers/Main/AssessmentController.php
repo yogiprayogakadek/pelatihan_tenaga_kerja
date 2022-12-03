@@ -59,10 +59,12 @@ class AssessmentController extends Controller
     {
         try {
             Assessment::updateOrCreate([
-                'participant_id' => $request->participant_id
+                'participant_id' => $request->participant_id,
+                'class_id' => $request->training_class_id
             ],
             [
                 'participant_id' => $request->participant_id,
+                'class_id' => $request->training_class_id,
                 'speaking' => $request->speaking,
                 'writing' => $request->writing,
             ]);

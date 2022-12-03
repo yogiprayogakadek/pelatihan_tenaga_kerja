@@ -122,7 +122,8 @@ Route::middleware('auth')->group(function() {
             ->as('certificate.')
             ->group(function(){
                 Route::get('', 'index')->name('index');
-                Route::get('/download', 'generateCertificate')->name('download');
+                Route::get('/render', 'render')->name('render');
+                Route::get('/download/{class_id}', 'generateCertificate')->name('download');
             });
     });
 });

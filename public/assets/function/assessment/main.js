@@ -62,10 +62,10 @@ $(document).ready(function () {
     $('body').on('click', '.btn-assessment', function() {
         let participant_id = $(this).data('participant-id');
         var training_class = $(this).data('training-class')
-
+        
         $('#modalAssessment').modal('show');
         $('#modalAssessment input[name=participant_id]').val(participant_id);
-        $('#modalAssessment input[name=training_class]').val(training_class);
+        $('#modalAssessment input[name=training_class_id]').val(training_class);
         $('#modalAssessment input[name=speaking]').val('');
         $('#modalAssessment input[name=writing]').val('');
     });
