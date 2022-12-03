@@ -119,7 +119,7 @@
                                             <label for="class">Class</label>
                                             <select name="class" id="class" class="form-control">
                                                 @foreach ($class as $key => $value)
-                                                    <option value="{{$key}}">{{$value}}</option>
+                                                    <option value="{{$value->id}}">{{$value->name}} - {{$value->code}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

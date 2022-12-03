@@ -26,6 +26,7 @@ class ClassRequest extends FormRequest
     {
         $rules = [
             'category' => 'required',
+            'code' => 'required',
             'name' => 'required',
             'description' => 'required',
         ];

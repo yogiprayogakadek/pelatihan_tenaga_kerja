@@ -17,6 +17,15 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
+                    <label for="isActive">User Status</label>
+                    <select name="isActive" id="isActive" class="form-control isActive">
+                        {{-- <option value="none">Choose status...</option> --}}
+                        <option value="1" {{$participant->user->status == 1 ? 'selected' : ''}}>Active</option>
+                        <option value="0" {{$participant->user->status == 0 ? 'selected' : ''}}>Deactive</option>
+                    </select>
+                    <div class="invalid-feedback error-status"></div>
+                </div>
+                <div class="form-group">
                     <input type="hidden" name="user_id" id="user_id" value="{{$participant->user->id}}">
                     <label for="name">Name</label>
                     <input type="text" class="form-control name" name="name" id="name" placeholder="enter your name" value="{{$participant->name}}" disabled>
@@ -63,8 +72,9 @@
                             <th>CV</th>
                             <th>Sertifikat Pengalaman Kerja</th>
                             <th>Foto 3x4</th>
-                            <th>Ijazah SMA/SMK</th>
-                            <th>Ijazah Perguruan Tinggi</th>
+                            {{-- <th>Ijazah SMA/SMK</th>
+                            <th>Ijazah Perguruan Tinggi</th> --}}
+                            <th>Ijazah Terakhir</th>
                             <th>Kartu Keluarga</th>
                             <th>KTP</th>
                             <th>Akte Lahir</th>

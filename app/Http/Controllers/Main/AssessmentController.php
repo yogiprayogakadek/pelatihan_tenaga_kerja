@@ -48,9 +48,9 @@ class AssessmentController extends Controller
         return response()->json($view);
     }
 
-    public function edit($participant_id)
+    public function edit($class_id, $participant_id)
     {
-        $assessment = Assessment::where('participant_id', $participant_id)->first();
+        $assessment = Assessment::where('class_id', $class_id)->where('participant_id', $participant_id)->first();
 
         return response()->json($assessment);
     }
@@ -58,6 +58,13 @@ class AssessmentController extends Controller
     public function store(AssessmentRequest $request)
     {
         try {
+            if($request->speaking < 10 || $request->writing < 10) {
+                return response()->json([
+                    'status' => 'info',
+                    'message' => 'Minimum value above 10',
+                    'title' => 'info'
+                ]);
+            }
             Assessment::updateOrCreate([
                 'participant_id' => $request->participant_id,
                 'class_id' => $request->training_class_id

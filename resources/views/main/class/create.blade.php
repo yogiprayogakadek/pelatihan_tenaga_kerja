@@ -27,6 +27,11 @@
                     <div class="invalid-feedback error-category"></div>
                 </div>
                 <div class="form-group">
+                    <label for="code">Class Code</label>
+                    <input type="text" class="form-control code" name="code" id="code" placeholder="enter class code">
+                    <div class="invalid-feedback error-code"></div>
+                </div>
+                <div class="form-group">
                     <label for="name">Class name</label>
                     <input type="text" class="form-control name" name="name" id="name" placeholder="enter class name">
                     <div class="invalid-feedback error-name"></div>

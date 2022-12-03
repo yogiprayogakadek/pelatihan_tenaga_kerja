@@ -134,6 +134,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script>
         $(document).ready(function () {
+            @if (session('code') == 405)
+                toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true
+                }
+                toastr.error("{{ session('message') }}");
+            @endif
+
             @if (session('status') == 'success')
                 toastr.options =
                 {

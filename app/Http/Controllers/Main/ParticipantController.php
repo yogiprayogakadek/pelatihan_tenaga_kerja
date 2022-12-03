@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Participant;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ParticipantController extends Controller
@@ -82,13 +83,18 @@ class ParticipantController extends Controller
     public function update(Request $request)
     {
         try {
-            // dd($request->all());
+            $user = User::find($request->user_id);
             $participant = Participant::where('user_id', $request->user_id)->first();
+            // dd($user);
             // dd($participant->registration);
+            $user->update([
+                'status' => $request->isActive
+            ]);
             $participant->registration->update([
                 'is_qualified' => $request->status,
                 'note' => $request->note
             ]);
+
 
             // if($request->status == 1) {
             //     $attendance = Attendance::firstOrNew(

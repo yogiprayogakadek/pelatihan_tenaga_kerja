@@ -70,8 +70,9 @@
                                     <th>CV</th>
                                     <th>Sertifikat Pengalaman Kerja</th>
                                     <th>Foto 3x4</th>
-                                    <th>Ijazah SMA/SMK</th>
-                                    <th>Ijazah Perguruan Tinggi</th>
+                                    {{-- <th>Ijazah SMA/SMK</th>
+                                    <th>Ijazah Perguruan Tinggi</th> --}}
+                                    <th>Ijazah Terakhir</th>
                                     <th>Kartu Keluarga</th>
                                     <th>KTP</th>
                                     <th>Akte Lahir</th>

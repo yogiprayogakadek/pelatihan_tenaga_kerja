@@ -146,7 +146,7 @@ class ClassController extends Controller
         // return view('main.class.participant.attendance', compact('attendance', 'participant'));
 
         $class_id = Payment::where('participant_id', auth()->user()->participant->id)->pluck('class_id')->toArray();
-        $participantClass = ParticipantClass::with('trainingClass')->whereIn('class_id', $class_id)->get();
+        $participantClass = ParticipantClass::with('trainingClass')->where('participant_id', auth()->user()->participant->id)->whereIn('class_id', $class_id)->get();
 
         $view = [
             'data' => view('main.class.participant.attendance.render', compact('participantClass'))->render(),
@@ -181,19 +181,19 @@ class ClassController extends Controller
     public function store(ClassRequest $request)
     {
         try {
-            $cat = $request->category;
-            if($cat == "Bar Class") {
-                $code = 'BR-' . date('Y');
-            } else if ($cat == "Restaurant Class") {
-                $code = 'RC-' . date('Y');
-            } else if ($cat == "Housekeeping") {
-                $code = 'HK-' . date('Y');
-            } else if ($cat == "Kitchen/Culinary") {
-                $code = 'KT-' . date('Y');
-            }
+            // $cat = $request->category;
+            // if($cat == "Bar Class") {
+            //     $code = 'BR-' . date('Y');
+            // } else if ($cat == "Restaurant Class") {
+            //     $code = 'RC-' . date('Y');
+            // } else if ($cat == "Housekeeping") {
+            //     $code = 'HK-' . date('Y');
+            // } else if ($cat == "Kitchen/Culinary") {
+            //     $code = 'KT-' . date('Y');
+            // }
 
             $data = [
-                'code' => $code,
+                'code' => $request->code,
                 'name' => $request->name,
                 'category' => $request->category,
                 'description' => $request->description,
@@ -233,20 +233,20 @@ class ClassController extends Controller
     public function update(ClassRequest $request)
     {
         try {
-            $cat = $request->category;
-            if($cat == "Bar Class") {
-                $code = 'BR-' . date('Y');
-            } else if ($cat == "Restaurant Class") {
-                $code = 'RC-' . date('Y');
-            } else if ($cat == "Housekeeping") {
-                $code = 'HK-' . date('Y');
-            } else if ($cat == "Kitchen/Culinary") {
-                $code = 'KT-' . date('Y');
-            }
+            // $cat = $request->category;
+            // if($cat == "Bar Class") {
+            //     $code = 'BR-' . date('Y');
+            // } else if ($cat == "Restaurant Class") {
+            //     $code = 'RC-' . date('Y');
+            // } else if ($cat == "Housekeeping") {
+            //     $code = 'HK-' . date('Y');
+            // } else if ($cat == "Kitchen/Culinary") {
+            //     $code = 'KT-' . date('Y');
+            // }
 
             $class = TrainingClass::find($request->id);
             $data = [
-                'code' => $code,
+                'code' => $request->code,
                 'name' => $request->name,
                 'category' => $request->category,
                 'description' => $request->description,
@@ -294,11 +294,12 @@ class ClassController extends Controller
     public function processAttendance(Request $request)
     {
         try {
-            // dd($request->all());
-            $data = Attendance::where('meeting_number', $request->meeting_number)->first();
-            // dd($attendance == null ? 'Absence' : 'b');
+            // $data = Attendance::where('meeting_number', $request->meeting_number)->first();
+            $data = Attendance::where('meeting_number', $request->meeting_number)->where('class_id', $request->class_id)->first();
+
             $participant = explode(',', $request->participant);
             $attendance = explode(',', $request->attendance);
+            // dd($request->all());
             if($data != null) {
                 // Attendance::where('meeting_number', $request->meeting_number)->delete();
                 for($i = 1; $i < count($attendance); $i++) {
@@ -331,8 +332,8 @@ class ClassController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                // 'message' => 'Absensi gagal disimpan',
-                'message' => 'Something went wrong',
+                'message' => $e->getMessage(),
+                // 'message' => 'Something went wrong',
                 'title' => 'Failed',
             ]);
         }

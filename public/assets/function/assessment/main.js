@@ -78,7 +78,7 @@ $(document).ready(function () {
         $('#modalAssessment input[name=participant_id]').val(participant_id);
         $('#modalAssessment input[name=training_class_id]').val(training_class);
 
-        $.get("/assessment/edit/"+participant_id, function (data) {
+        $.get("/assessment/edit/"+training_class + "/" + participant_id, function (data) {
             $('#modalAssessment input[name=speaking]').val(data.speaking);
             $('#modalAssessment input[name=writing]').val(data.writing);
         });

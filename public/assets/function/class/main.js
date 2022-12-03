@@ -315,7 +315,7 @@ $(document).ready(function () {
                         $('.btn-process-attendance').html('Save')
                     },
                     success: function (response) {
-                        console.log(response)
+                        // console.log(response)
                         // $('#form').trigger('reset')
                         // $(".invalid-feedback").html('')
                         getDataAttendance(class_id)
@@ -324,6 +324,10 @@ $(document).ready(function () {
                             response.message,
                             response.status
                         );
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
                     },
                     error: function (error) {
                         console.log("Error", error);

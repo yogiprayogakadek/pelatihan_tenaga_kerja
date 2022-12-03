@@ -19,6 +19,7 @@
                     <th>Photo</th>
                     <th>Status Document</th>
                     <th>Status</th>
+                    <th>User Active</th>
                     <th>Description</th>
                     <th>Action</th>
                 </thead>
@@ -40,14 +41,15 @@
                             {{$count == 8 ? 'No data uploaded yet' : ($count == 0 ? 'Documents complete' : 'Documents are not complete')}}
                         </td>
                         <td>{{$participant->registration->is_qualified == 1 ? 'Accepted' : ($participant->registration->note == null ? 'Waiting for validation' : 'Rejected')}}</td>
+                        <td>{!!$participant->user->status == 1 ? '<span class="badge bg-primary text-white">Active</span>' : '<span class="badge bg-danger text-white">Deactive</span>' !!}</td>
                         <td>{{$participant->registration->note ?? '-'}}</td>
                         <td>
                             <button class="btn btn-edit btn-default" data-id="{{$participant->id}}">
                                 <i class="fa fa-eye text-success mr-2 pointer" ></i> Edit dan View
                             </button>
-                            <button class="btn btn-delete btn-danger" data-id="{{$participant->id}}">
+                            {{-- <button class="btn btn-delete btn-danger" data-id="{{$participant->id}}">
                                 <i class="fa fa-trash text-success pointer" ></i> Delete
-                            </button>
+                            </button> --}}
                             {{-- <i class="nav-icon i-Pen-2 font-weight-bold btn-edit text-success mr-2 pointer" data-id="{{$participant->id}}"></i>
                             <i class="nav-icon i-Close-Window font-weight-bold btn-delete text-danger pointer" data-id="{{$participant->id}}"></i> --}}
                         </td>

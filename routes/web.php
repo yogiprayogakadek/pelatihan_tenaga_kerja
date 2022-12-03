@@ -96,7 +96,7 @@ Route::middleware('auth')->group(function() {
                 Route::get('', 'index')->name('index');
                 Route::get('/render', 'render')->name('render');
                 Route::get('/create', 'create')->name('create');
-                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::get('/edit/{class_id}/{participant_id}', 'edit')->name('edit');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/update', 'update')->name('update');
 

@@ -17,7 +17,8 @@ class RegistrationController extends Controller
 {
     public function index()
     {
-        $class = TrainingClass::pluck('name', 'id')->prepend('Pilih kelas...', '')->toArray();
+        // $class = TrainingClass::pluck('name', 'id')->prepend('Pilih kelas...', '')->toArray();
+        $class = TrainingClass::where('status', true)->get();
         return view('auth.registration', compact('class'));
     }
 
@@ -71,8 +72,9 @@ class RegistrationController extends Controller
                 'cv' => "empty",
                 'sertifikat_pengalaman_kerja' => "empty",
                 'foto' => "empty",
-                'ijazah_sma' => "empty", //ijazah sma atau smk
-                'ijazah_pt' => "empty", //ijazah perguruan tinggi
+                // 'ijazah_sma' => "empty", //ijazah sma atau smk
+                // 'ijazah_pt' => "empty", //ijazah perguruan tinggi
+                'ijazah_terakhir' => "empty", //kartu keluarga
                 'kk' => "empty", //kartu keluarga
                 'ktp' => "empty",
                 'akte_lahir' => "empty"

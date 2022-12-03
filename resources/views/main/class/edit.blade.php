@@ -33,6 +33,11 @@
                     <div class="invalid-feedback error-name"></div>
                 </div>
                 <div class="form-group">
+                    <label for="code">Class Code</label>
+                    <input type="text" class="form-control code" name="code" id="code" placeholder="enter class code" value="{{$class->code}}">
+                    <div class="invalid-feedback error-code"></div>
+                </div>
+                <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control description" name="description" id="description" placeholder="enter class description">{{$class->description}}</textarea>
                     <div class="invalid-feedback error-description"></div>
